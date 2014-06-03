@@ -19,18 +19,18 @@ app.factory('Card', function (){
     ];
 
 
-  var Post = {
-    all: posts,
+  var Card = {
+    all: cards,
     create: function (post) {
-      return posts.$add(post);
-    },
-    find: function (postId) {
-      return posts.$child(postId);
-    },
-    delete: function (postId) {
-      return posts.$remove(postId);
+      return console.log("post created in ze model: " + post)
     }
+    // find: function (postId) {
+    //   return posts.$child(postId);
+    // },
+    // delete: function (postId) {
+    //   return posts.$remove(postId);
+    // }
   };
 
-  return Post;
+  return Card;
 });
