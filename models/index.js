@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-mongoose.createConnection('mongodb://localhost/livelist');
+mongoose.connect('mongodb://localhost/livlust');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
@@ -12,4 +12,4 @@ var CardSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('Card', CardSchema);
+exports.Card = mongoose.model('Card', CardSchema);

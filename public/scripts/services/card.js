@@ -1,6 +1,6 @@
 'use strict';
 
-app.factory('Card', function (){
+app.factory('Card', function ($http, $routeParams){
 
   var cards =
     [
@@ -19,10 +19,20 @@ app.factory('Card', function (){
     ];
 
 
+  // $http.get('/cards').success(function(data, status, headers, config) {
+  //   console.log(data);
+  //   cards = data;
+  // });
+
   var Card = {
     all: cards,
-    create: function (post) {
-      return console.log("post created in ze model: " + post)
+    create: function (title, description) {
+      console.log("title: " + title);
+      console.log("description: " + description )
+      return $http.post('/add', {title: title, description: description} ).success(function(data, status, headers, config) {
+    console.log(data);
+    cards = data;
+  });
     }
     // find: function (postId) {
     //   return posts.$child(postId);
