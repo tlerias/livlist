@@ -1,0 +1,9 @@
+<form name="cardForm" role="form" ng-submit="addCard(cardForm)" novalidate>
+  <div class="form-group">
+    <label class="control-label">Title</label>
+    <input name="title_text" type="text" class="form-control" ng-model="question_text" placeholder="What is it you want to do?" ></input>
+    <label class="control-label">Description</label>
+    <textarea name="description_text" type="text" class="form-control" ng-model="description_text" placeholder="Tell me about it..." ></textarea>
+    <button type="submit" class="btn btn-success">Add Card</button>
+  </div>
+</form>
