@@ -1,10 +1,10 @@
 var express = require('express'),
     router = express.Router(),
+    // mongoose = require('mongoose'),
+    // Card = mongoose.model('Card');
     models = require('../models');
 
-
 router.get('/cards', function(req, res) {
-  console.log(models.Card);
   models.Card.find({}, function(err,cards) {
     if(err) throw err;
     console.log("express route: " + cards);
