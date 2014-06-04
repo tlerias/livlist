@@ -5,6 +5,13 @@ module.exports = function(grunt){
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
+    karma: {
+      unit: {
+        configFile: 'config/karma.conf.js',
+        background: true
+      }
+    },
+
     htmlhint: {
       build: {
         options: {
@@ -37,6 +44,10 @@ module.exports = function(grunt){
           'public/stylesheets/**/*.css'
         ],
         tasks: ['buildcss']
+      },
+      karma: {
+        files: ['test/unit/**/*Spec.js', 'public/scripts/**/*.js'],
+        tasks: ['karma:unit:run']
       }
     },
 
@@ -48,7 +59,7 @@ module.exports = function(grunt){
             'models/**/*.js',
             'routes/**/*.js',
             'app/**/*.js'
-            ]
+          ]
         }
       }
     },
@@ -85,7 +96,11 @@ module.exports = function(grunt){
     }
   });
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-karma');
+
   grunt.registerTask('default', []);
   grunt.registerTask('htmlhint', []);
   grunt.registerTask('build',  ['sass', 'cssc', 'cssmin', 'uglify']);
+  grunt.registerTask('test', ['karma:unit', 'watch']);
 };
