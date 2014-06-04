@@ -2,13 +2,29 @@ module.exports = function(grunt){
 
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-mocha-test');
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     karma: {
+      e2e: {
+       configFile: 'config/karma-e2e.conf.js'
+      },
       unit: {
         configFile: 'config/karma.conf.js',
-        background: true
+        singleRun: true
+      }
+    },
+
+    mochaTest:{
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/server/**/*.js']
       }
     },
 
@@ -46,7 +62,7 @@ module.exports = function(grunt){
         tasks: ['buildcss']
       },
       karma: {
-        files: ['test/unit/**/*Spec.js', 'public/scripts/**/*.js'],
+        files: ['test/app/**/*Spec.js', 'public/scripts/**/*.js'],
         tasks: ['karma:unit:run']
       }
     },
@@ -96,11 +112,10 @@ module.exports = function(grunt){
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-karma');
-
   grunt.registerTask('default', []);
   grunt.registerTask('htmlhint', []);
   grunt.registerTask('build',  ['sass', 'cssc', 'cssmin', 'uglify']);
-  grunt.registerTask('test', ['karma:unit', 'watch']);
+  grunt.registerTask('devmode', ['karma:unit', 'watch']);
+  grunt.registerTask('test', ['mochaTest', 'karma:unit', 'karma:e2e']);
+
 };

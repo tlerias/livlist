@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Wed Jun 04 2014 14:38:03 GMT-0400 (EDT)
+// Generated on Wed Jun 04 2014 16:46:44 GMT-0400 (EDT)
 
 module.exports = function(config) {
   config.set({
@@ -10,26 +10,17 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai', 'sinon'],
+    frameworks: ['ng-scenario'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-cookies/angular-cookies.js',
-      'bower_components/angular-resource/angular-resource.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-route/angular-route.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'public/scripts/**/*.js',
-      'test/app/**/*Spec.js'
+      'test/app/e2e/**/*.js'
     ],
 
 
     // list of files to exclude
-    exclude: [
-
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
@@ -46,8 +37,7 @@ module.exports = function(config) {
 
 
     // web server port
-    port: 9876,
-
+    port: 8080,
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -72,3 +62,10 @@ module.exports = function(config) {
     singleRun: true
   });
 };
+
+proxies = {
+      // change this if you've changed your grunt server port. default is 9000
+      '/': 'http://localhost:8080'
+   };
+
+    urlRoot = '/__e2e/';
