@@ -2,36 +2,21 @@
 
 app.factory('Card', function ($http, $routeParams){
 
-  var cards =
-    [
-      {
-        "title": "1one",
-        "content": "description for 1one"
-      },
-      {
-        "title": "2two",
-        "content": "description for 2two"
-      },
-      {
-        "title": "3three",
-        "content": "description for 3three"
-      }
-    ];
-
-
-  // $http.get('/cards').success(function(data, status, headers, config) {
-  //   console.log(data);
-  //   cards = data;
-  // });
+  var cards;
 
   var Card = {
-    all: cards,
+    getCards: function(){
+      var promise = $http.get('/cards').success(function(data, status, headers, config) {
+        console.log("get cards success: " + data);
+        return data;
+      });
+      return promise;
+    },
     create: function (title, description) {
-      console.log("title: " + title);
-      console.log("description: " + description )
-      return $http.post('/add', {title: title, description: description} ).success(function(data, status, headers, config) {
-    console.log(data);
-    cards = data;
+      console.log("title & descript: "  + title + description);
+      return $http.post('/add', {title: title, description: description} ).success(function(data, status) {
+        console.log(data);
+        console.log("sent to route");
   });
     }
     // find: function (postId) {

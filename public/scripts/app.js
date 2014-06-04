@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('livLustApp', [
+var app = angular.module('livListApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
