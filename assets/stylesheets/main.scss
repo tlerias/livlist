@@ -1,4 +1,5 @@
 $main:#9900CC;
+$tags:#CC00FF;
 
 body {
   padding: 50px 0 0 0;
@@ -6,7 +7,6 @@ body {
 
   nav{
     margin-top: -50px;
-    background-color:red;
     li {
       margin: 5px 5px;
     }
@@ -44,6 +44,11 @@ body {
     background-color:#ccc;
     min-width:400px;
     z-index: -1;
+
+    .tags {
+      color:$tags;
+      font-weight:bold;
+    }
   }
 
   .addCardForm {
@@ -74,6 +79,7 @@ body {
 
   .done-title {
     margin:10px 5px;
+    color:$main;
   }
 }
 

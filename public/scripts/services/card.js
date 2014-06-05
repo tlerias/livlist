@@ -12,9 +12,9 @@ app.factory('Card', function ($http, $routeParams){
       });
       return getCardPromise;
     },
-    create: function (title, description) {
+    create: function (title, description, tags) {
       console.log("just entered the create function in factory");
-      var createPromise = $http.post('/add', {title: title, description: description} ).success(function(data, status) {
+      var createPromise = $http.post('/add', {title: title, description: description, tags: tags} ).success(function(data, status) {
         return(data);
   });
       return createPromise;

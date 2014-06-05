@@ -16,6 +16,7 @@ angular.module('livListApp').controller('CardCtrl', function($scope, Card){
 
   $scope.addCard = function() {
     console.log('in the controller, creating a card');
+    console.log('tags: ' + $scope.tagsText);
     Card.create($scope.questionText, $scope.descriptionText, $scope.tagsText).then(function(promise) {
         $scope.cards.unshift(promise.data);
         $scope.questionText = '';

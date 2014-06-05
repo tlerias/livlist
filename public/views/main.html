@@ -13,7 +13,7 @@
             <label class="control-label">Description</label>
             <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText" placeholder="Tell me about it..." ></textarea>
             <tags-input ng-model='tagsText'></tags-input>
-            <button type="submit" class="btn btn-success">Add Card</button>
+            <button type="submit" class="btn btn-info">Add Card</button>
           </div>
         </form>
       </div>
@@ -21,14 +21,15 @@
   </div>
 <div class="row">
     <div class= "container-fluid col-lg-9">
-      <div class="card-title">
+      <div class="done-title">
         <span class="lead">Things I Want To Do</span>
       </div>
 
        <div class="btn btn-droppable individualCard-container" ng-repeat="item in cards" data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
          <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:true, animate:true}" ng-hide="!item.title">
           <span class = "card-title">{{item.title}}</span>
-          <p><span span class = "card-content"> {{item.content}}</span><p>
+<!--           <p><span class = "card-content"> {{item.content}}</span><p> -->
+            <p><span class="tags" ng-repeat='tag in item.tags'> #{{tag.text}} </span><p>
           <!-- <p><tags-input ng-model='item.tags'></tags-input></p> -->
         </div>
       </div>

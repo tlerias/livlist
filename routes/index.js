@@ -15,9 +15,11 @@ router.get('/cards', function(req, res) {
 router.post('/add', function(req, res) {
   console.log("in express:" + req.body.title);
   var title = req.body.title,
-      content = req.body.description;
+      content = req.body.description,
+      tags = req.body.tags;
+      console.log('express tags: ' + tags);
 
-  var c = new models.Card({ "title": title, "content":content});
+  var c = new models.Card({ "title": title, "content":content, tags: tags});
   c.save(function(err, newCard) {
     if(err) return console.log(err);
     console.log("route just created a card!: " + newCard)
