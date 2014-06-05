@@ -3,8 +3,8 @@
 
 angular.module('livListApp').controller('CardCtrl', function($scope, Card){
   $scope.cards = [];
-  $scope.question_text = "";
-  $scope.description_text = "";
+  $scope.questionText = "";
+  $scope.descriptionText = "";
 
   Card.getCards().then(function(promise) {
 
@@ -13,9 +13,9 @@ angular.module('livListApp').controller('CardCtrl', function($scope, Card){
 
   $scope.addCard = function() {
     console.log("in the controller, creating a card");
-    Card.create($scope.question_text, $scope.description_text)
-    $scope.question_text = "";
-    $scope.description_text = "";
+    Card.create($scope.questionText, $scope.descriptionText);
+    $scope.questionText = "";
+    $scope.descriptionText = "";
   };
 
 });
