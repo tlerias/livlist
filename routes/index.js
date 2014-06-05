@@ -27,6 +27,17 @@ router.post('/add', function(req, res) {
   });
 });
 
+router.get('/card/:id/edit', function(req, res) {
+  console.log("in edit route...");
+  var id = req.params.id;
+  console.log("edit id: " + id);
+  models.Card.findById(id, function(err,card) {
+    if(err) throw err;
+    console.log("express get card to edit : " + card);
+    res.json(card, 200);
+  });
+});
+
 // router.get('*', function(req, res) {
 //   res.sendfile('../public/views/index.html');
 // });

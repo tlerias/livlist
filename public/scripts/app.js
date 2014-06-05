@@ -14,6 +14,10 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider){
       .when('/', {
         templateUrl:'../views/main.html',
         controller: 'CardCtrl'
+      })
+      .when('/card/:id/edit', {
+        templateUrl:'../views/edit.html',
+        controller: 'editCardCtrl'
       });
 
   });

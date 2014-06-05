@@ -18,10 +18,14 @@ app.factory('Card', function ($http, $routeParams){
         return(data);
   });
       return createPromise;
-    }
-    // find: function (postId) {
-    //   return posts.$child(postId);
-    // },
+    },
+     find: function (postId) {
+       var findCardPromise = $http.get('/card/'+postId+'/edit').success(function(data, status, headers, config) {
+        console.log("get cards success: " + data);
+        return data;
+      });
+      return findCardPromise;
+     }
     // delete: function (postId) {
     //   return posts.$remove(postId);
     // }

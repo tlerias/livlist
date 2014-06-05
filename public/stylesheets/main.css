@@ -1,6 +1,8 @@
 body {
   padding: 50px 0 0 0;
   text-align: left; }
+  body .glyphicon {
+    padding: 0 2.5px; }
   body nav {
     margin-top: -50px; }
     body nav li {

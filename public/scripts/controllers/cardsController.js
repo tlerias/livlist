@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('livListApp').controller('CardCtrl', function($scope, Card){
+angular.module('livListApp').controller('CardCtrl', function($scope, $location, Card){
   $scope.cards = [];
   $scope.dropContainer = [];
   $scope.questionText = "";
@@ -29,6 +29,13 @@ angular.module('livListApp').controller('CardCtrl', function($scope, Card){
   $scope.hover = function(item) {
     return item.showEdit = !item.showEdit;
   };
+
+  $scope.editCard = function(id){
+    Card.find(id).then(function(promise) {
+        console.log("got the card edit data: " + promise.data);
+        $location.path( "/card/"+id+"/edit" )
+      });
+  }
 
 
 });
