@@ -4,7 +4,7 @@
 angular.module('livListApp').controller('CardCtrl', function($scope, $location, Card){
   $scope.cards = [];
   $scope.dropContainer = [];
-  $scope.questionText = "";
+  $scope.titleText = "";
   $scope.descriptionText = "";
   $scope.tagsText = [];
   console.log("Drop Container: " + $scope.dropContainer);
@@ -17,9 +17,9 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.addCard = function() {
     console.log('in the controller, creating a card');
     console.log('tags: ' + $scope.tagsText);
-    Card.create($scope.questionText, $scope.descriptionText, $scope.tagsText).then(function(promise) {
+    Card.create($scope.titleText, $scope.descriptionText, $scope.tagsText).then(function(promise) {
         $scope.cards.unshift(promise.data);
-        $scope.questionText = '';
+        $scope.titleText = '';
         $scope.descriptionText = '';
         $scope.tagsText = [];
         $scope.showForm.form = false;
@@ -30,12 +30,9 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
     return item.showEdit = !item.showEdit;
   };
 
-  $scope.editCard = function(id){
-    Card.find(id).then(function(promise) {
-        console.log("got the card edit data: " + promise.data);
-        $location.path( "/card/"+id+"/edit" )
-      });
-  }
+  $scope.goEdit = function (path) {
+    $location.path('/card/'+path+'/edit');
+  };
 
 
 });

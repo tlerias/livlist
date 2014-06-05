@@ -6,7 +6,8 @@ var app = angular.module('livListApp', [
   'ngSanitize',
   'ngRoute',
   'ngDragDrop',
-  'ngTagsInput'
+  'ngTagsInput',
+  'xeditable'
 ]);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider){
@@ -21,3 +22,7 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider){
       });
 
   });
+
+app.run(function(editableOptions) {
+  editableOptions.theme = 'bs3';
+});

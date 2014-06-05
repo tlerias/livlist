@@ -9,7 +9,7 @@
         <form name="cardForm" role="form" ng-submit="addCard(cardForm)" novalidate>
           <div class="form-group">
             <label class="control-label">Title</label>
-            <input name="titleText" type="text" class="form-control" ng-model="questionText" placeholder="What is it you want to do?" ></input>
+            <input name="titleText" type="text" class="form-control" ng-model="titleText" placeholder="What is it you want to do?" ></input>
             <label class="control-label">Description</label>
             <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText" placeholder="Tell me about it..." ></textarea>
             <tags-input ng-model='tagsText'></tags-input>
@@ -30,7 +30,7 @@
           <span class = "card-title">{{item.title}}</span>
 <!--           <p><span class = "card-content"> {{item.content}}</span><p> -->
             <p><span class="tags" ng-repeat='tag in item.tags'> #{{tag.text}} </span><p>
-              <div class="hover-options" ng-show="item.showEdit"><a ng-click="editCard(item._id)"> <span class="glyphicon glyphicon-pencil"></span></a>
+              <div class="hover-options" ng-show="item.showEdit"><a ng-click="goEdit(item._id)"> <span class="glyphicon glyphicon-pencil"></span></button>
 
                 <a href="#">  <span class="glyphicon glyphicon-trash
 "></span></a></div>

@@ -1,15 +1,17 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <div class="addCardForm pull-right" ng-show="showForm.form">
-        <form name="cardForm" role="form" ng-submit="addCard(cardForm)" novalidate>
+      <div class="addCardForm-edit">
+        <form name="cardForm" role="form" ng-submit="addCard(cardForm)" editable-form novalidate>
           <div class="form-group">
             <label class="control-label">Title</label>
-            <input name="titleText" type="text" class="form-control" ng-model="questionText" placeholder="What is it you want to do?" ></input>
+            <p>
+            <span>{{currentCard.title}}: title goes before the colon</span>
+            <p>
             <label class="control-label">Description</label>
-            <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText" placeholder="Tell me about it..." ></textarea>
+            <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText"> {{descriptionText}}</textarea>
             <tags-input ng-model='tagsText'></tags-input>
-            <button type="submit" class="btn btn-info">Add Card</button>
+            <button type="submit" class="btn btn-info">Edit Card</button>
           </div>
         </form>
       </div>

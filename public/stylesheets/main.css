@@ -46,6 +46,11 @@ body {
     z-index: 2; }
     body .addCardForm input[type='text'], body .addCardForm textarea {
       margin-bottom: 5px; }
+  body .addCardForm-edit {
+    padding: 20px;
+    margin: 25px; }
+    body .addCardForm-edit input[type='text'], body .addCardForm-edit textarea, body .addCardForm-edit tags-input {
+      margin-bottom: 25px; }
   body .card-title {
     font-size: 1.5em; }
   body #done .jumbotron {
