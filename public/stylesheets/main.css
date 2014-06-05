@@ -21,16 +21,19 @@ body {
     display: inline-block;
     border: solid 0.25px;
     z-index: 1; }
+    body .individualCard:hover {
+      border: dashed 1px #5bc0de;
+      background-color: #eee; }
   body .individualCard-container {
     margin: 5px 10px;
     background-color: white;
     display: inline-block;
-    height: 100px;
+    height: 125px;
     background-color: #ccc;
-    min-width: 400px;
+    min-width: 350px;
     z-index: -1; }
     body .individualCard-container .tags {
-      color: #CC00FF;
+      color: #46b8da;
       font-weight: bold; }
   body .addCardForm {
     text-align: left;
@@ -47,4 +50,13 @@ body {
     height: 100%; }
   body .done-title {
     margin: 10px 5px;
-    color: #9900CC; }
+    color: #5bc0de; }
+  body .hover-options {
+    text-align: right;
+    margin: -10px -15px;
+    padding: 10px; }
+    body .hover-options a:link, body .hover-options a:visited {
+      text-decoration: none;
+      color: #000; }
+    body .hover-options a:hover {
+      color: #5bc0de; }

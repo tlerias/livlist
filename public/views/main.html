@@ -20,23 +20,24 @@
     </div>
   </div>
 <div class="row">
-    <div class= "container-fluid col-lg-9">
+    <div class= "container-fluid col-lg-8">
       <div class="done-title">
         <span class="lead">Things I Want To Do</span>
       </div>
 
        <div class="btn btn-droppable individualCard-container" ng-repeat="item in cards" data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
-         <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:true, animate:true}" ng-hide="!item.title">
+         <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:true, animate:true}" ng-hide="!item.title" ng-mouseover="hover(item)" ng-mouseout="hover(item)">
           <span class = "card-title">{{item.title}}</span>
 <!--           <p><span class = "card-content"> {{item.content}}</span><p> -->
             <p><span class="tags" ng-repeat='tag in item.tags'> #{{tag.text}} </span><p>
+              <div class="hover-options" ng-show="item.showEdit"><a href="#">edit <span class="glyphicon glyphicon-pencil"></span></a></div>
           <!-- <p><tags-input ng-model='item.tags'></tags-input></p> -->
         </div>
       </div>
 
     </div>
 
-    <div id="done" class="col-lg-3">
+    <div id="done" class="col-lg-4">
       <div class="done-title">
         <span class="lead">Things I've Done</span>
       </div>

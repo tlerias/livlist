@@ -19,7 +19,7 @@ router.post('/add', function(req, res) {
       tags = req.body.tags;
       console.log('express tags: ' + tags);
 
-  var c = new models.Card({ "title": title, "content":content, tags: tags});
+  var c = new models.Card({ "title": title, "content":content, tags: tags, showEdit: false});
   c.save(function(err, newCard) {
     if(err) return console.log(err);
     console.log("route just created a card!: " + newCard)

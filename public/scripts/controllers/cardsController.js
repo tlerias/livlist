@@ -26,5 +26,9 @@ angular.module('livListApp').controller('CardCtrl', function($scope, Card){
       });
   };
 
+  $scope.hover = function(item) {
+    return item.showEdit = !item.showEdit;
+  };
+
 
 });

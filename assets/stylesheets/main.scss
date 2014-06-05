@@ -1,5 +1,5 @@
-$main:#9900CC;
-$tags:#CC00FF;
+$main:#5bc0de;
+$tags:#46b8da;
 
 body {
   padding: 50px 0 0 0;
@@ -33,6 +33,10 @@ body {
     display: inline-block;
     border: solid .25px;;
     z-index: 1;
+    &:hover{
+      border:dashed 1px $main;
+      background-color:#eee;
+    }
   }
 
 
@@ -40,9 +44,9 @@ body {
     margin: 5px 10px;
     background-color: white;
     display: inline-block;
-    height:100px;
+    height:125px;
     background-color:#ccc;
-    min-width:400px;
+    min-width:350px;
     z-index: -1;
 
     .tags {
@@ -80,6 +84,21 @@ body {
   .done-title {
     margin:10px 5px;
     color:$main;
+  }
+
+  .hover-options{
+    text-align:right;
+    //background-color:rgba(255, 255, 255, 0.5);
+    //margin: 10px -35px 0 -35px;
+    margin: -10px -15px;
+    padding:10px;
+    a:link, a:visited {
+      text-decoration:none;
+      color:#000;
+    }
+    a:hover{
+      color:$main;
+    }
   }
 }
 

@@ -9,6 +9,7 @@ var CardSchema = new Schema({
   title: String,
   content: String,
   tags: Array,
+  showEdit: Boolean,
   create_date: {type: Date, default: Date.now}
 
 });
