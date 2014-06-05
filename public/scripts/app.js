@@ -5,7 +5,8 @@ var app = angular.module('livListApp', [
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'ngDragDrop'
+  'ngDragDrop',
+  'ngTagsInput'
 ]);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider){

@@ -1,34 +1,49 @@
+<!--
+<button type="button" class="btn btn-default" ng-click="addCardForm()" ng-show="showForm.form">Hide
+</button> -->
 
-<button type="button" class="btn btn-success" ng-click="addCardForm()" ng-show="!showForm">Add Card
-</button>
-<button type="button" class="btn btn-default" ng-click="addCardForm()" ng-show="showForm">Hide
-</button>
-<div ng-show="showForm">
-  <form name="cardForm" role="form" ng-submit="addCard(cardForm)" novalidate>
-    <div class="form-group">
-      <label class="control-label">Title</label>
-      <input name="titleext" type="text" class="form-control" ng-model="questionText" placeholder="What is it you want to do?" ></input>
-      <label class="control-label">Description</label>
-      <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText" placeholder="Tell me about it..." ></textarea>
-      <button type="submit" class="btn btn-success">Add Card</button>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="addCardForm pull-right" ng-show="showForm.form">
+        <form name="cardForm" role="form" ng-submit="addCard(cardForm)" novalidate>
+          <div class="form-group">
+            <label class="control-label">Title</label>
+            <input name="titleText" type="text" class="form-control" ng-model="questionText" placeholder="What is it you want to do?" ></input>
+            <label class="control-label">Description</label>
+            <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText" placeholder="Tell me about it..." ></textarea>
+            <tags-input ng-model='tagsText'></tags-input>
+            <button type="submit" class="btn btn-success">Add Card</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </form>
-</div>
+  </div>
+<div class="row">
+    <div class= "container-fluid col-lg-9">
+      <div class="card-title">
+        <span class="lead">Things I Want To Do</span>
+      </div>
 
- <div class="btn btn-droppable" ng-repeat="item in cards" data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
-   <div class="btn btn-info btn-draggable" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:true, animate:true}" ng-hide="!item.title">
-    <h3>{{item.title}}</h3>
-    <p> {{item.content}}</p>
+       <div class="btn btn-droppable individualCard-container" ng-repeat="item in cards" data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
+         <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:true, animate:true}" ng-hide="!item.title">
+          <span class = "card-title">{{item.title}}</span>
+          <p><span span class = "card-content"> {{item.content}}</span><p>
+          <!-- <p><tags-input ng-model='item.tags'></tags-input></p> -->
+        </div>
+      </div>
+
+    </div>
+
+    <div id="done" class="col-lg-3">
+      <div class="done-title">
+        <span class="lead">Things I've Done</span>
+      </div>
+      <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}">
+        <div class="btn btn-draggable" ng-repeat="item in dropContainer" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="dropContainer" jqyoui-draggable="{index: {{$index}},animate:true}">
+          <h4>{{item.title}}</h4>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-
-<div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}">
-  <div class="btn btn-info btn-draggable" ng-repeat="item in dropContainer" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="dropContainer" jqyoui-draggable="{index: {{$index}},animate:true}">
-    <h3>{{item.title}}</h3>
-    <p> {{item.content}}</p>
-    <p><a href="http://google.com">google</a>
-  </div>
-</div>
-
-

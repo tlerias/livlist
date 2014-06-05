@@ -1,4 +1,80 @@
+$main:#9900CC;
+
 body {
   padding: 50px 0 0 0;
+  text-align:left;
 
+  nav{
+    margin-top: -50px;
+    background-color:red;
+    li {
+      margin: 5px 5px;
+    }
+    .navbar .navbar-default{
+      background-color:#FF0000;
+    }
+  }
+
+  .navbar-default .navbar-brand{
+      font-size: 2em;
+    }
+
+    .navbar-brand a:link, .navbar-brand a:visited {
+        color:#9900CC;
+    }
+
+  .individualCard {
+    padding: 20px;
+    background-color: white;
+    color:#000;
+    height:100%;
+    width:100%;
+    box-shadow: 5px 5px 10px #888888;
+    display: inline-block;
+    border: solid .25px;;
+    z-index: 1;
+  }
+
+
+  .individualCard-container {
+    margin: 5px 10px;
+    background-color: white;
+    display: inline-block;
+    height:100px;
+    background-color:#ccc;
+    min-width:400px;
+    z-index: -1;
+  }
+
+  .addCardForm {
+    text-align:left;
+    padding:20px;
+    margin: 25px;
+    border: solid 1px;;
+    width: 100%;
+    z-index: 2;
+
+    input[type='text'], textarea {
+      margin-bottom: 5px;
+    }
+
+  }
+
+  .card-title{
+    font-size:1.5em;
+  }
+  .card-description{
+
+  }
+  #done {
+    .jumbotron{
+      height:100%;
+    }
+  }
+
+  .done-title {
+    margin:10px 5px;
+  }
 }
+
+
