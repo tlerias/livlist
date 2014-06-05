@@ -8,6 +8,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 var CardSchema = new Schema({
   title: String,
   content: String,
+  tags: Array,
   create_date: {type: Date, default: Date.now}
 
 });

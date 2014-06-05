@@ -6,18 +6,18 @@ app.factory('Card', function ($http, $routeParams){
 
   var Card = {
     getCards: function(){
-      var promise = $http.get('/cards').success(function(data, status, headers, config) {
+      var getCardPromise = $http.get('/cards').success(function(data, status, headers, config) {
         console.log("get cards success: " + data);
         return data;
       });
-      return promise;
+      return getCardPromise;
     },
     create: function (title, description) {
-      console.log("title & descript: "  + title + description);
-      return $http.post('/add', {title: title, description: description} ).success(function(data, status) {
-        console.log(data);
-        console.log("sent to route");
+      console.log("just entered the create function in factory");
+      var createPromise = $http.post('/add', {title: title, description: description} ).success(function(data, status) {
+        return(data);
   });
+      return createPromise;
     }
     // find: function (postId) {
     //   return posts.$child(postId);

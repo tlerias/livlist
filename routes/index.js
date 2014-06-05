@@ -18,8 +18,11 @@ router.post('/add', function(req, res) {
       content = req.body.description;
 
   var c = new models.Card({ "title": title, "content":content});
-  c.save();
-  res.json(200);
+  c.save(function(err, newCard) {
+    if(err) return console.log(err);
+    console.log("route just created a card!: " + newCard)
+    res.json(newCard, 200);
+  });
 });
 
 // router.get('*', function(req, res) {

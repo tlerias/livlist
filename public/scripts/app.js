@@ -4,7 +4,8 @@ var app = angular.module('livListApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'ngDragDrop'
 ]);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider){
