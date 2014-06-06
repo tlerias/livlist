@@ -8,10 +8,12 @@ var passport = require('passport');
 //   res.render('signup.html', {message: req.flash('signupMessage')});
 // });
 
-router.post('/', passport.authenticate('local-signup', {
-    successRedirect : '/home', //where successful redirects get redirected.
-    failureRedirect : '/signup', //where failed authentication gets redirected
-    failureFlash : true
-}))
 
+router.post('/', function(req, res, next) {
+  passport.authenticate('local-signup', function (err, user, info) {
+    if(err) { return next(err); }
+    res.send(200, user);
+  })(req, res, next);
+
+});
 module.exports = router;

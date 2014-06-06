@@ -66,6 +66,10 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider){
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
+      .when('/signup', {
+        templateUrl: 'views/signup.html',
+        controller: 'LoginCtrl'
+      })
       .when('/cards', {
         templateUrl:'../views/main.html',
         controller: 'CardCtrl'
@@ -73,6 +77,9 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider){
       .when('/card/:id/edit', {
         templateUrl:'../views/edit.html',
         controller: 'editCardCtrl'
+      })
+      .otherwise('/card/:id/edit', {
+        redirectTo: '/'
       });
 
   });
