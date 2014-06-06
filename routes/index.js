@@ -38,8 +38,30 @@ router.get('/card/:id/edit', function(req, res) {
   });
 });
 
+router.post('/card/:id/edit_submit', function(req, res) {
+    var new_title = req.body.title, new_body = req.body.description, new_tags = req.body.tags, id = req.params.id;
+    models.Card.findByIdAndUpdate(id, {title: new_title, content: new_body, tags: new_tags}, function(err, card) {
+    res.json(200)
+    });
+});
 // router.get('*', function(req, res) {
 //   res.sendfile('../public/views/index.html');
 // });
+
+router.post('/card/:id/delete', function(req, res) {
+    id = req.params.id;
+    models.Card.findByIdAndRemove(id, function(err){
+      if(err){
+        console.log(err.message);
+      } else{
+        res.json(200);
+      }
+    });
+});
+
+router.get('/logout', function(req, res){
+  req.logout(); //this logout function is provided by passport
+  res.redirect('/');
+});
 
 module.exports = router;

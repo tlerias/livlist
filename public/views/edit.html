@@ -2,16 +2,14 @@
   <div class="row">
     <div class="col-lg-12">
       <div class="addCardForm-edit">
-        <form name="cardForm" role="form" ng-submit="addCard(cardForm)" editable-form novalidate>
+        <form name="cardForm" role="form" ng-submit="editCard(cardForm)" novalidate>
           <div class="form-group">
             <label class="control-label">Title</label>
-            <p>
-            <span>{{currentCard.title}}: title goes before the colon</span>
-            <p>
+            <input name="titleText" type="text" class="form-control" ng-model="currentCard.title" ></input>
             <label class="control-label">Description</label>
-            <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText"> {{descriptionText}}</textarea>
-            <tags-input ng-model='tagsText'></tags-input>
-            <button type="submit" class="btn btn-info">Edit Card</button>
+            <textarea name="descriptionText" type="text" class="form-control" ng-model="currentCard.content"></textarea>
+            <tags-input ng-model='currentCard.tags'></tags-input>
+            <button type="submit" class="btn btn-info">Save</button>
           </div>
         </form>
       </div>

@@ -34,5 +34,13 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
     $location.path('/card/'+path+'/edit');
   };
 
+  $scope.deleteCard = function(id) {
+    Card.delete(id).then(function(promise) {
+      Card.getCards().then(function(promise) {
+        $scope.cards = promise.data;
+      });
+    });
+  }
+
 
 });

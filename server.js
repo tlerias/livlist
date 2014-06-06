@@ -1,13 +1,24 @@
 var express = require('express'),
     swig = require('swig'),
-    sass = require('node-sass'),
+    passport = require('passport'),
+    flash = require('connect-flash');
+
+    require('./config/passport')(passport);
+
+var sass = require('node-sass'),
     path = require('path'),
     favicon = require('static-favicon'),
     mongoose = require('mongoose'),
     cookieParser = require('cookie-parser'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
-    routes = require('./routes');
+    session = require('express-session'),
+
+
+    routes = require('./routes'),
+    home = require('./routes/home'),
+    login_routes = require('./routes/login'),
+    signup_routes = require('./routes/signup');
 
 
 
@@ -35,8 +46,15 @@ app.use(
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
-app.use('/', routes);
+app.use(session({ secret: 'taraiscool' })); // session secret, the salt used to encrypt the session ids which are stored in the client's browser.
+app.use(passport.initialize()); //creates our passport object
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored
 
+app.use('/', routes);
+app.use('/home', home);
+app.use('/login', login_routes);
+app.use('/signup', signup_routes);
 
 
 app.use(function(req, res, next) {

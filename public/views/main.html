@@ -30,9 +30,9 @@
           <span class = "card-title">{{item.title}}</span>
 <!--           <p><span class = "card-content"> {{item.content}}</span><p> -->
             <p><span class="tags" ng-repeat='tag in item.tags'> #{{tag.text}} </span><p>
-              <div class="hover-options" ng-show="item.showEdit"><a ng-click="goEdit(item._id)"> <span class="glyphicon glyphicon-pencil"></span></button>
+              <div class="hover-options" ng-show="item.showEdit"><a ng-click="goEdit(item._id)"> <span class="glyphicon glyphicon-pencil"></span></a>
 
-                <a href="#">  <span class="glyphicon glyphicon-trash
+                <a ng-really-message="Are you sure you want to permanently delete this?" ng-really-click="deleteCard(item._id)"><span class="glyphicon glyphicon-trash
 "></span></a></div>
         </div>
       </div>
@@ -42,9 +42,10 @@
     <div id="done" class="col-lg-4">
       <div class="done-title">
         <span class="lead">Things I've Done</span>
+        <div class="btn btn-success pull-right">{{dropContainer.length}}</div>
       </div>
-      <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}">
-        <div class="btn btn-draggable" ng-repeat="item in dropContainer" ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="dropContainer" jqyoui-draggable="{index: {{$index}},animate:true}">
+      <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}"> <span class="small" ng-if="dropContainer.length === 0"> Drag completed cards here!</span>
+        <div class="btn btn-success btn-draggable" ng-repeat="item in dropContainer | reverse " ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="dropContainer" jqyoui-draggable="{index: {{$index}},animate:true}">
           <h4>{{item.title}}</h4>
         </div>
       </div>

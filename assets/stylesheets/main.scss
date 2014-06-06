@@ -1,12 +1,22 @@
-$main:#5bc0de;
-$tags:#46b8da;
+$main:#46b8da;
+$tags:#f0ad4e;
+$headers:#d9534f;
 
 body {
   padding: 50px 0 0 0;
   text-align:left;
 
-  .glyphicon {
-    padding: 0 2.5px;
+  .small {
+    text-align:center;
+  }
+
+  .navbar-default .navbar-brand{
+    color:$main;
+    }
+
+  .navbar-default{
+    //background-color:$main;
+    box-shadow: 2px 2px 5px #888;
   }
 
   nav{
@@ -14,8 +24,11 @@ body {
     li {
       margin: 5px 5px;
     }
-    .navbar .navbar-default{
-      background-color:#FF0000;
+
+    .btn-info {
+      // background-color:#FFF;
+      // color:$main;
+      box-shadow: 2px 2px 5px #888;
     }
   }
 
@@ -37,6 +50,7 @@ body {
     display: inline-block;
     border: solid .25px;;
     z-index: 1;
+    overflow:hidden;
     &:hover{
       border:dashed 1px $main;
       background-color:#eee;
@@ -50,7 +64,7 @@ body {
     display: inline-block;
     height:125px;
     background-color:#ccc;
-    min-width:350px;
+    width:350px;
     z-index: -1;
 
     .tags {
@@ -89,9 +103,22 @@ body {
 
   }
   #done {
-    .jumbotron{
-      height:100%;
+    .done-title{
+      .btn-success {
+        margin:-2.5px 0;
+      }
     }
+    .jumbotron{
+      padding:15px;
+      min-height: 200px;
+      margin:15px 0;
+
+      .btn-success {
+        margin:10px;
+      }
+    }
+
+
   }
 
   .done-title {
@@ -105,12 +132,16 @@ body {
     //margin: 10px -35px 0 -35px;
     margin: -10px -15px;
     padding:10px;
+    .glyphicon{
+      padding: 0 2.5px;
+    }
     a:link, a:visited {
       text-decoration:none;
-      color:#000;
     }
     a:hover{
-      color:$main;
+      .glyphicon{
+        color:#000;
+      }
     }
   }
 }

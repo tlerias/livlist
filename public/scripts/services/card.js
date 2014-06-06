@@ -25,10 +25,20 @@ app.factory('Card', function ($http, $routeParams){
         return data;
       });
       return findCardPromise;
-     }
-    // delete: function (postId) {
-    //   return posts.$remove(postId);
-    // }
+     },
+     update: function (title, description, tags, postId) {
+       var editCardPromise = $http.post('/card/'+postId+'/edit_submit', {title: title, description: description, tags: tags}).success(function(data, status, headers, config) {
+        console.log("get cards success: " + data);
+        return data;
+      });
+      return editCardPromise;
+     },
+    delete: function (postId) {
+      var deleteCardPromise = $http.post('/card/'+postId+'/delete').success(function(data, status, headers, config) {
+        return data;
+      });
+      return deleteCardPromise;
+    }
   };
 
   return Card;
