@@ -42,7 +42,9 @@ var UserSchema = new Schema({
       token        : String,
       email        : String,
       name         : String
-  }
+  },
+  cards: Array,
+  doneCards: Array
 });
 
 //methods =====

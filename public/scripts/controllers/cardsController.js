@@ -1,23 +1,30 @@
 'use strict';
 
 
-angular.module('livListApp').controller('CardCtrl', function($scope, $location, Card){
+angular.module('livListApp').controller('CardCtrl', function($scope, $location, $rootScope, $cookieStore, Card){
   $scope.cards = [];
   $scope.dropContainer = [];
   $scope.titleText = "";
   $scope.descriptionText = "";
   $scope.tagsText = [];
-  console.log("Drop Container: " + $scope.dropContainer);
+  $scope.user = $cookieStore.get('user');
 
-  Card.getCards().then(function(promise) {
+  $scope.$watchCollection('dropContainer', function(newlyDoneCards, oldDoneCards){
+    console.log("cards: " + newlyDoneCards[-1]._id);
+    console.log("uId: " + $scope.user._id);
+    Card.updateDone(newlyDoneCards[-1]._id, $scope.user._id).then(function(promise) {
+      console.log("done done")
+    })
+  });
 
+
+  Card.getCards($scope.user._id).then(function(promise) {
     $scope.cards = promise.data;
   });
 
   $scope.addCard = function() {
-    console.log('in the controller, creating a card');
-    console.log('tags: ' + $scope.tagsText);
-    Card.create($scope.titleText, $scope.descriptionText, $scope.tagsText).then(function(promise) {
+    Card.create($scope.titleText, $scope.descriptionText, $scope.tagsText, [$scope.user._id]).then(function(promise) {
+
         $scope.cards.unshift(promise.data);
         $scope.titleText = '';
         $scope.descriptionText = '';
@@ -36,11 +43,20 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
 
   $scope.deleteCard = function(id) {
     Card.delete(id).then(function(promise) {
-      Card.getCards().then(function(promise) {
+      Card.getCards($scope.user._id).then(function(promise) {
         $scope.cards = promise.data;
       });
     });
   }
+  $scope.logout = function() {
+    Card.logout().then(function(promise) {
+      $cookieStore.remove('user');
+      $rootScope.message = 'Logged out!';
+      $location.url('/login');
+    });
+  }
+
+
 
 
 });

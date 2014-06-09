@@ -18,6 +18,7 @@ router.get('/loggedin', function(req, res) {
 router.post('/', function(req, res, next) {
   passport.authenticate('local-login', function (err, user, info) {
     console.log("info", info);
+    console.log(JSON.stringify(req.session.passport.user));
     if (err) { return next(err); }
     if (!user) { return res.send(401, info.error) }
     req.logIn(user, function(err) {

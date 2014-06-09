@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('livListApp').controller('LoginCtrl', function($scope, $rootScope, $http, $location) {
+angular.module('livListApp').controller('LoginCtrl', function($scope, $rootScope, $http, $location, $cookieStore) {
   // This object will be filled by the form
   $scope.user = {};
 
@@ -14,12 +14,13 @@ angular.module('livListApp').controller('LoginCtrl', function($scope, $rootScope
     .success(function(user){
       // No error: authentication OK
       $rootScope.message = 'Authentication successful!';
-      $rootScope.current_user = user;
+      $cookieStore.put('user', user);
       $location.url('/cards');
     })
     .error(function(err){
       // Error: authentication failed
       $rootScope.message = err;
+      $cookieStore.remove('user');
       $location.url('/login');
     });
   };
@@ -34,7 +35,8 @@ angular.module('livListApp').controller('LoginCtrl', function($scope, $rootScope
       // No error: authentication OK
       console.log("signup came back: " + JSON.stringify(user));
       $rootScope.message = 'SignUp successful!';
-      //$location.url('/cards');
+      $cookieStore.put('user', user);
+      $location.url('/cards');
     })
     .error(function(){
       // Error: authentication failed
