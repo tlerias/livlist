@@ -4,6 +4,8 @@ var express = require('express'),
     // Card = mongoose.model('Card');
     models = require('../models');
 
+var ObjectId = require('mongoose').Types.ObjectId;
+
 router.get('/cards/:id', function(req, res) {
   var id = req.params.id;
   console.log("getting cards for user id: " + id);
@@ -11,9 +13,12 @@ router.get('/cards/:id', function(req, res) {
     console.log(JSON.stringify(user));
     console.log("user cards log: " + user[0].cards)
     models.Card.find({_id: {$in: user[0].cards}}, function(err, cards) {
-    if(err) throw err;
-    console.log("express route, getting cards: " + cards);
-    res.json(cards, 200);
+
+      models.Card.find({_id: {$in: user[0].doneCards}}, function(err, doneCards) {
+        if(err) throw err;
+        console.log("express route, getting cards: " + cards);
+        res.json({cards: cards, doneCards: doneCards}, 200);
+      });
     });
   });
 });
@@ -49,13 +54,23 @@ router.get('/card/:id/edit', function(req, res) {
   });
 });
 
-router.get('/card/:postId/:userId/done', function(req, res) {
-  conesole.log("in done route");
-  var pId = req.params.postId;
+router.post('/done/:userId', function(req, res) {
+  console.log("in done route");
+  var posts = req.body.posts;
   var uId = req.params.userId;
-  models.User.update({_id: uId}, {$pull: {cards: pId}});
-  models.User.update({_id: uId}, {$push: {doneCards: pId}});
-  res.send(200);
+  var postIds = [];
+  for (var i = 0; i < posts.length; i++){
+    postIds.push(ObjectId(posts[i]._id));
+  }
+  console.log("posts: " + JSON.stringify(postIds));
+  console.log("user: " + uId);
+  models.User.update({"_id": uId}, {$pullAll: {"cards": postIds}}, function(err,doc){
+    if(err) console.log(err)
+    models.User.update({"_id": uId}, {"doneCards": postIds}, function(err,doc){
+    if(err) console.log(err);
+    res.send(200);
+    });
+  });
 });
 
 router.post('/card/:id/edit_submit', function(req, res) {

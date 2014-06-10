@@ -78,8 +78,9 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider){
         templateUrl:'../views/edit.html',
         controller: 'editCardCtrl'
       })
-      .otherwise('/card/:id/edit', {
-        redirectTo: '/'
+      .when('/card/:id', {
+        templateUrl:'../views/show.html',
+        controller: 'CardCtrl'
       });
 
   });

@@ -8,19 +8,26 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.descriptionText = "";
   $scope.tagsText = [];
   $scope.user = $cookieStore.get('user');
+  $scope.querySearch = "";
+  $scope.currentCard = $cookieStore.get('card');
 
-  $scope.$watchCollection('dropContainer', function(newlyDoneCards, oldDoneCards){
-    console.log("cards: " + newlyDoneCards[-1]._id);
-    console.log("uId: " + $scope.user._id);
-    Card.updateDone(newlyDoneCards[-1]._id, $scope.user._id).then(function(promise) {
-      console.log("done done")
-    })
-  });
 
 
   Card.getCards($scope.user._id).then(function(promise) {
-    $scope.cards = promise.data;
+    console.log(JSON.stringify(promise));
+    $scope.cards = promise.data.cards;
+    $scope.dropContainer = promise.data.doneCards;
   });
+
+
+  $scope.$watchCollection('dropContainer', function(newlyDoneCards, oldDoneCards){
+    if (newlyDoneCards === oldDoneCards){ return }
+      console.log(newlyDoneCards);
+      Card.updateDone(newlyDoneCards, $scope.user._id).then(function(promise) {
+         console.log("done done");
+       });
+  });
+
 
   $scope.addCard = function() {
     Card.create($scope.titleText, $scope.descriptionText, $scope.tagsText, [$scope.user._id]).then(function(promise) {
@@ -44,7 +51,7 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.deleteCard = function(id) {
     Card.delete(id).then(function(promise) {
       Card.getCards($scope.user._id).then(function(promise) {
-        $scope.cards = promise.data;
+        $scope.cards = promise.data.cards;
       });
     });
   }
@@ -54,6 +61,22 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
       $rootScope.message = 'Logged out!';
       $location.url('/login');
     });
+  }
+
+  $scope.changeFilter = function(tag) {
+    $scope.querySearch = tag;
+  }
+
+  $scope.goToCard = function(id) {
+    $cookieStore.remove("card");
+    console.log("cookie store: " + $cookieStore.get('card'))
+    $location.path('/card/'+id);
+    for(var i = 0; i < $scope.cards.length; i++){
+      if($scope.cards[i]._id === id){
+        console.log("found it!");
+        $cookieStore.put("card", $scope.cards[i]);
+      }
+    }
   }
 
 

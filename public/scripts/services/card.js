@@ -6,8 +6,9 @@ app.factory('Card', function ($http, $routeParams){
 
   var Card = {
     getCards: function(userId){
-      var getCardPromise = $http.get('/cards/' + userId).success(function(data, status, headers, config) {
-        return data;
+      var getCardPromise = $http.get('/cards/' + userId).success(function(cards, status) {
+        console.log(cards);
+        return cards;
       });
       return getCardPromise;
     },
@@ -43,8 +44,8 @@ app.factory('Card', function ($http, $routeParams){
       return logoutPromise;
     },
 
-    updateDone: function(postId, userId){
-     var doneCardPromise = $http.get('/card/'+postId+userId+'/done').success(function(headers){
+    updateDone: function(posts, userId){
+     var doneCardPromise = $http.post('/done/'+userId, { posts: posts }).success(function(headers){
       return headers;
      });
      return doneCardPromise;
