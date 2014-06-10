@@ -134,6 +134,14 @@ body {
     margin:10px 5px;
     color:$main;
   }
+  .showImages {
+      display: block;
+      max-width:700px;
+      max-height:700px;
+      width: auto;
+      height: auto;
+
+    }
 
   .hover-options{
     text-align:right;

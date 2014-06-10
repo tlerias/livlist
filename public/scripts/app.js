@@ -7,7 +7,8 @@ var app = angular.module('livListApp', [
   'ngRoute',
   'ngDragDrop',
   'ngTagsInput',
-  'xeditable'
+  'xeditable',
+  'flow'
 ]);
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider){
@@ -98,3 +99,19 @@ app.run(function($rootScope, $http){
     $http.post('/logout');
   };
 });
+
+app.config(['flowFactoryProvider', function (flowFactoryProvider) {
+  flowFactoryProvider.defaults = {
+    //target: 'upload.php',
+    permanentErrors: [404, 500, 501],
+    maxChunkRetries: 1,
+    chunkRetryInterval: 5000,
+    simultaneousUploads: 4,
+    singleFile: true
+  };
+  flowFactoryProvider.on('catchAll', function (event) {
+    console.log('catchAll', arguments);
+  });
+  // Can be used with different implementations of Flow.js
+  // flowFactoryProvider.factory = fustyFlowFactory;
+}]);

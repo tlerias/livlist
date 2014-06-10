@@ -82,6 +82,10 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
     }
   }
 
+  $scope.goBack = function () {
+    $location.path('/cards');
+  };
+
 
 
 
