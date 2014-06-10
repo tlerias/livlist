@@ -1,8 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+      flow-files-submitted="$flow.upload()" ng-controller="editCardFormCtrl" >
       <div class="addCardForm-edit">
-        <form name="cardForm" role="form" ng-submit="editCard(cardForm)" novalidate>
+        <form name="cardForm" role="form" ng-submit="editCard(cardForm, $flow.files[0].name)" novalidate>
           <div class="form-group">
             <label class="control-label">Title</label>
             <input name="titleText" type="text" class="form-control" ng-model="currentCard.title" ></input>

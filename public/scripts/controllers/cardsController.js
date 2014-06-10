@@ -4,10 +4,6 @@
 angular.module('livListApp').controller('CardCtrl', function($scope, $location, $rootScope, $cookieStore, Card){
   $scope.cards = [];
   $scope.dropContainer = [];
-  $scope.titleText = "";
-  $scope.imgUrl = "";
-  $scope.descriptionText = "";
-  $scope.tagsText = [];
   $scope.user = $cookieStore.get('user');
   $scope.querySearch = "";
   $scope.currentCard = $cookieStore.get('card');
@@ -29,19 +25,6 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
        });
   });
 
-
-  $scope.addCard = function() {
-    console.log("adding card in controller, image: " + $scope.imgUrl)
-    Card.create($scope.titleText, $scope.descriptionText, $scope.tagsText, [$scope.user._id], $scope.imgUrl).then(function(promise) {
-
-        $scope.cards.unshift(promise.data);
-        $scope.titleText = '';
-        $scope.imgUrl = '';
-        $scope.descriptionText = '';
-        $scope.tagsText = [];
-        $scope.showForm.form = false;
-      });
-  };
 
   $scope.hover = function(item) {
     return item.showEdit = !item.showEdit;
@@ -85,6 +68,7 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.goBack = function () {
     $location.path('/cards');
   };
+
 
 
 

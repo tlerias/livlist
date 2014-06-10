@@ -2,92 +2,81 @@
 <button type="button" class="btn btn-default" ng-click="addCardForm()" ng-show="showForm.form">Hide
 </button> -->
 
-<div class="container" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
-      flow-files-submitted="$flow.upload()">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+      flow-files-submitted="$flow.upload()" ng-controller="formCtrl">
+      <div class="addCardForm pull-right" ng-show="showForm.form">
+        <form name="cardForm" role="form" ng-submit="addCard(cardForm, $flow.files[0].name)" novalidate>
+          <div class="form-group">
+            <label class="control-label">Title</label>
+            <input name="titleText" type="text" class="form-control" ng-model="titleText" placeholder="What is it you want to do?" ></input>
+            <!-- <label class="control-label">Image URL</label>
+            <input name="imgUrl" type="text" class="form-control" ng-model="imgUrl" placeholder="Do you have a URL of an image to put here?" ></input> -->
+            <label class="control-label">Upload an image:</label>
+            <!-- <input type="file" flow-btn /> -->
+            <div class="thumbnail" ng-hide="$flow.files.length">
+              <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+            </div>
+            <div class="thumbnail" ng-show="$flow.files.length">
+              <img flow-img="$flow.files[0]" />
+            </div>
+            <div>
+              <input type="button" class="btn btn-primary" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}" value="Upload"/>
+              <input type="button"  class="btn btn-primary" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}" value="Change" />
+              <input type="button"  class="btn btn-danger" ng-show="$flow.files.length" flow-attrs="{accept:'image/*'}" ng-click="$flow.cancel()" value="Remove" />
+            </div>
+            <p>
+              Only PNG,GIF,JPG files allowed.
+            </p>
+            <label class="control-label">Description</label>
+            <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText" placeholder="Tell me about it..." ></textarea>
+            <tags-input ng-model='tagsText'></tags-input>
+            <button type="submit" class="btn btn-info">Add Card</button>
+          </div> <!--form group -->
+        </form>
+      </div> <!--addCarm form -->
+    </div> <!--col-lg-12 flow init-->
+  </div> <!--row close -->
+  <a ng-click="logout()">logout</a>
   <div class="row">
     <div class="col-lg-12">
        <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" ng-model="querySearch">
         </div>
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </form>
     </div>
   </div>
-  <div class="row">
-    <div class="col-lg-12">
-      <div class="addCardForm pull-right" ng-show="showForm.form">
-        <form name="cardForm" role="form" ng-submit="addCard(cardForm)" novalidate>
-          <div class="form-group">
-            <label class="control-label">Title</label>
-            <input name="titleText" type="text" class="form-control" ng-model="titleText" placeholder="What is it you want to do?" ></input>
-            <label class="control-label">Image URL</label>
-            <input name="imgUrl" type="text" class="form-control" ng-model="imgUrl" placeholder="Do you have a URL of an image to put here?" ></input>
-            <label class="control-label">Or upload an image:</label>
-            <!-- <input type="file" flow-btn /> -->
-
-            <div>
-              <div class="thumbnail" ng-hide="$flow.files.length">
-                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
-              </div>
-              <div class="thumbnail" ng-show="$flow.files.length">
-                <img flow-img="$flow.files[0]" />
-              </div>
-              <div>
-                <input type="button" class="btn btn-primary" ng-hide="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}" value="Upload"/>
-                <input type="button"  class="btn btn-primary" ng-show="$flow.files.length" flow-btn flow-attrs="{accept:'image/*'}" value="Change" />
-                <input type="button"  class="btn btn-danger" ng-show="$flow.files.length" flow-attrs="{accept:'image/*'}" ng-click="$flow.cancel()" value="Remove" />
-              </div>
-              <p>
-                Only PNG,GIF,JPG files allowed.
-              </p>
-            </div>
-
-
-
-            <label class="control-label">Description</label>
-            <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText" placeholder="Tell me about it..." ></textarea>
-            <tags-input ng-model='tagsText'></tags-input>
-            <button type="submit" class="btn btn-info">Add Card</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-  <a ng-click="logout()">logout</a>
 <div class="row">
-    <div class= "container-fluid col-lg-8">
-      <div class="done-title">
-        <span class="lead">Things I Want To Do</span>
-      </div>
-      <span class="small" ng-if="cards.length === 0"> You don't have anything to do, add a card!</span>
-
-       <div class="btn btn-droppable individualCard-container" ng-repeat="item in cards | filter: querySearch" data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
-         <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true}" ng-hide="!item.title" ng-mouseover="hover(item)" ng-mouseout="hover(item)">
-          <a class = "card-title" ng-click="goToCard(item._id)"> {{item.title}} </span></a>
-<!--           <p><span class = "card-content"> {{item.content}}</span><p> -->
-
-          <p><img class="descriptiveImages" ng-src={{item.image}} height="300" width="480"}} /></p>
-            <p><span class="tags" ng-repeat='tag in item.tags'><a ng-click="changeFilter(tag.text)"> #{{tag.text}} </span></a><p>
-              <div class="hover-options" ng-show="item.showEdit"><a ng-click="goEdit(item._id)"> <span class="glyphicon glyphicon-pencil"></span></a>
-
-              <a ng-really-message="Are you sure you want to permanently delete this?" ng-really-click="deleteCard(item._id)"><span class="glyphicon glyphicon-trash
-"></span></a>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  <div class= "container-fluid col-lg-8">
+    <div class="done-title">
+      <span class="lead">Things I Want To Do</span>
+    </div> <!--done title -->
+    <span class="small" ng-if="cards.length === 0"> You don't have anything to do, add a card!</span>
+    <div class="btn btn-droppable individualCard-container" ng-repeat="item in cards | orderBy: 'create_date':true| filter: querySearch" data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
+      <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true}" ng-hide="!item.title" ng-mouseover="hover(item)" ng-mouseout="hover(item)">
+        <a class="card-title" ng-click="goToCard(item._id)"> {{item.title}} </span></a>
+        <p><img class="descriptiveImages" ng-src={{item.image}} height="300" width="480"}} /></p>
+        <p><span class="tags" ng-repeat='tag in item.tags'><a ng-click="changeFilter(tag.text)"> #{{tag.text}} </span></a></p>
+        <div class="hover-options" ng-show="item.showEdit"><a ng-click="goEdit(item._id)"> <span class="glyphicon glyphicon-pencil"></span></a>
+          <a ng-really-message="Are you sure you want to permanently delete this?" ng-really-click="deleteCard(item._id)"><span class="glyphicon glyphicon-trash"></span></a>
+        </div> <!--hover options -->
+      </div> <!--btn draggable-->
+    </div><!--btn droppable -->
+    </div>  <!--container fluid  col 8-->
     <div id="done" class="col-lg-4">
       <div class="done-title">
         <span class="lead">Things I've Done</span>
-        <div class="btn btn-success pull-right">{{dropContainer.length}}</div>
-      </div>
-      <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}"> <span class="small" ng-if="dropContainer.length === 0"> Drag completed cards here!</span>
+        <div class="btn btn-success pull-right">
+          {{dropContainer.length}}
+        </div>
+      </div><!--done title -->
+      <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}">  <span class="small" ng-if="dropContainer.length === 0"> Drag completed cards here!</span>
         <div class="btn btn-success btn-draggable" ng-repeat="item in dropContainer | reverse " ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="dropContainer" jqyoui-draggable="{index: {{$index}},animate:true}">
           <h4>{{item.title}}</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        </div> <!--btn draggable-->
+      </div><!--jumbotron -->
+    </div> <!--done -->
+  </div><!--row -->
+</div><!--container for form -->

@@ -102,7 +102,7 @@ app.run(function($rootScope, $http){
 
 app.config(['flowFactoryProvider', function (flowFactoryProvider) {
   flowFactoryProvider.defaults = {
-    //target: 'upload.php',
+    target: 'fileUpload',
     permanentErrors: [404, 500, 501],
     maxChunkRetries: 1,
     chunkRetryInterval: 5000,

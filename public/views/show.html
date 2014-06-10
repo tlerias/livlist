@@ -11,7 +11,7 @@
     <div class="col-lg-12">
       <span class='card-title'>{{currentCard.title || "Untitiled"}}</span>
       <p><img class="showImages" ng-src={{currentCard.image}} /></p>
-      <p>{{currentCard.description || "No Description"}}</p>
+      <p>{{currentCard.content || "No Description"}}</p>
        <tags-input ng-model='currentCard.tags'></tags-input>
       </div>
     </div>

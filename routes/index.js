@@ -1,8 +1,17 @@
+process.env.TMPDIR = 'tmp';
+
 var express = require('express'),
     router = express.Router(),
     // mongoose = require('mongoose'),
     // Card = mongoose.model('Card');
-    models = require('../models');
+    models = require('../models'),
+    multipart = require('connect-multiparty'),
+    multipartMiddleware = multipart(),
+    flow = require('./flow-node')('tmp'),
+    AWS = require('aws-sdk'),
+    fs = require('fs');
+
+AWS.config.loadFromPath('config/aws.json');
 
 var ObjectId = require('mongoose').Types.ObjectId;
 
@@ -99,6 +108,54 @@ router.post('/card/:id/delete', function(req, res) {
 router.get('/logout', function(req, res){
   req.logout(); //this logout function is provided by passport
   res.send(200);
+});
+
+router.get('/fileUpload', function(req, res) {
+  flow.get(req, function(status, filename, original_filename, identifier) {
+        console.log('GET', status);
+        res.send(200, (status == 'found' ? 200 : 404));
+    });
+});
+
+router.post('/fileUpload', multipartMiddleware, function(req, res) {
+  console.log("in file upload post");
+  flow.post(req, function(status, filename, original_filename, identifier) {
+    console.log("status: "+ status, filename, original_filename, identifier);
+    if(status === "done"){
+      var stream = fs.createWriteStream("tmp/" + filename);
+      stream.on('finish', function() {
+        console.log("stream ended");
+
+        var s3 = new AWS.S3();
+        fs.readFile('tmp/'+filename, function(error, file) {
+          if(error) { console.log("read error:", error);}
+          var base64data = new Buffer(file, 'binary');
+          console.log("file", file);
+          console.log(filename);
+          var params = {Bucket: 'LivelyList', Key: filename, Body: base64data};
+          s3.putObject(params, function(err, data) {
+            if (err) {
+              console.log("err", err)
+            } else {
+                console.log(data);
+                console.log("Successfully uploaded data to LivelyList Bucket");
+                res.send(200, {
+                // NOTE: Uncomment this funciton to enable cross-domain request.
+                //'Access-Control-Allow-Origin': '*'
+                });
+              }
+          });
+        });
+
+      });
+      flow.write(identifier, stream, {end: true});
+    }
+
+  });
+});
+
+router.get('/download/:identifier', function(req, res) {
+    flow.write(req.params.identifier, res);
 });
 
 module.exports = router;
