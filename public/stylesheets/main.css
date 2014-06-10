@@ -35,13 +35,19 @@ body {
     margin: 5px 10px;
     background-color: white;
     display: inline-block;
-    height: 125px;
+    height: 350px;
     background-color: #ccc;
     width: 350px;
     z-index: -1; }
     body .individualCard-container .tags {
       color: #f0ad4e;
       font-weight: bold; }
+    body .individualCard-container .descriptiveImages {
+      display: block;
+      max-width: 275px;
+      max-height: 250px;
+      width: auto;
+      height: auto; }
   body .addCardForm {
     text-align: left;
     padding: 20px;
@@ -71,8 +77,8 @@ body {
     color: #46b8da; }
   body .hover-options {
     text-align: right;
-    margin: -10px -15px;
-    padding: 10px; }
+    margin: 10px 0 0 -35px;
+    height: 100%; }
     body .hover-options .glyphicon {
       padding: 0 2.5px; }
     body .hover-options a:link, body .hover-options a:visited {

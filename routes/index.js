@@ -27,13 +27,15 @@ router.post('/add', function(req, res) {
   console.log("in express:" + req.body.title);
   var title = req.body.title,
       content = req.body.description,
-      tags = req.body.tags;
-      owners = req.body.owners;
+      tags = req.body.tags,
+      owners = req.body.owners,
+      image = req.body.image,
       owner = req.body.owners.toString();
-      console.log("owner: " + owner)
+      console.log("image: " + image);
+      console.log("owner: " + owner);
       console.log('express tags: ' + tags);
 
-  var c = new models.Card({ "title": title, "content":content, tags: tags, showEdit: false, owners: owners});
+  var c = new models.Card({ "title": title, "content":content, tags: tags, showEdit: false, owners: owners, image: image});
   c.save(function(err, newCard) {
     if(err) return console.log(err);
     console.log("card id: " + newCard._id)
@@ -74,8 +76,8 @@ router.post('/done/:userId', function(req, res) {
 });
 
 router.post('/card/:id/edit_submit', function(req, res) {
-    var new_title = req.body.title, new_body = req.body.description, new_tags = req.body.tags, id = req.params.id;
-    models.Card.findByIdAndUpdate(id, {title: new_title, content: new_body, tags: new_tags}, function(err, card) {
+    var new_title = req.body.title, new_body = req.body.description, new_tags = req.body.tags, new_image = req.body.image, id = req.params.id;
+    models.Card.findByIdAndUpdate(id, {title: new_title, content: new_body, tags: new_tags, image: new_image}, function(err, card) {
     res.send(200);
     });
 });

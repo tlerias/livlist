@@ -11,7 +11,7 @@ angular.module('livListApp').controller('editCardCtrl', function($scope, $routeP
 
   $scope.editCard = function() {
     console.log('editing card');
-   Card.update($scope.currentCard.title, $scope.currentCard.content, $scope.currentCard.tags, id).then(function(promise) {
+   Card.update($scope.currentCard.title, $scope.currentCard.content, $scope.currentCard.tags, $scope.currentCard.image, id).then(function(promise) {
     $location.path('/cards');
     });
  };

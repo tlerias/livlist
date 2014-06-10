@@ -62,7 +62,7 @@ body {
     margin: 5px 10px;
     background-color: white;
     display: inline-block;
-    height:125px;
+    height:350px;
     background-color:#ccc;
     width:350px;
     z-index: -1;
@@ -70,6 +70,15 @@ body {
     .tags {
       color:$tags;
       font-weight:bold;
+    }
+
+    .descriptiveImages {
+      display: block;
+      max-width:275px;
+      max-height:250px;
+      width: auto;
+      height: auto;
+
     }
   }
 
@@ -129,9 +138,10 @@ body {
   .hover-options{
     text-align:right;
     //background-color:rgba(255, 255, 255, 0.5);
-    //margin: 10px -35px 0 -35px;
-    margin: -10px -15px;
-    padding:10px;
+    margin: 10px 0 0 -35px;
+    // margin: -10px -15px;
+    // padding:10px;
+    height:100%;
     .glyphicon{
       padding: 0 2.5px;
     }

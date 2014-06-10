@@ -12,7 +12,8 @@ var CardSchema = new Schema({
   tags: Array,
   showEdit: Boolean,
   create_date: {type: Date, default: Date.now},
-  owners: Array
+  owners: Array,
+  image: String
 
 });
 

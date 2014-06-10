@@ -5,6 +5,7 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.cards = [];
   $scope.dropContainer = [];
   $scope.titleText = "";
+  $scope.imgUrl = "";
   $scope.descriptionText = "";
   $scope.tagsText = [];
   $scope.user = $cookieStore.get('user');
@@ -30,10 +31,12 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
 
 
   $scope.addCard = function() {
-    Card.create($scope.titleText, $scope.descriptionText, $scope.tagsText, [$scope.user._id]).then(function(promise) {
+    console.log("adding card in controller, image: " + $scope.imgUrl)
+    Card.create($scope.titleText, $scope.descriptionText, $scope.tagsText, [$scope.user._id], $scope.imgUrl).then(function(promise) {
 
         $scope.cards.unshift(promise.data);
         $scope.titleText = '';
+        $scope.imgUrl = '';
         $scope.descriptionText = '';
         $scope.tagsText = [];
         $scope.showForm.form = false;
