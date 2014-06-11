@@ -75,9 +75,10 @@ body {
     .descriptiveImages {
       display: block;
       max-width:275px;
-      max-height:250px;
+      max-height:175px;
       width: auto;
       height: auto;
+      margin: 20px auto;
 
     }
   }
@@ -107,6 +108,9 @@ body {
 
   .card-title{
     font-size:1.5em;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    word-wrap: break-word;
   }
 
   #done {
@@ -117,12 +121,40 @@ body {
     }
     .jumbotron{
       padding:15px;
-      min-height: 200px;
+      min-height: 500px;
       margin:15px 0;
 
-      .btn-success {
-        margin:10px;
+    .doneItem{
+      text-align:center;
+      background-color:#5cb85c;
+      color:#FFF;
+      margin: 10px;
+      padding:5px;
+      border:solid #4cae4c;
+      border-radius:25px;
+
+      &:hover{
+        color:black;
       }
+
+      .glyphicon{
+        color:#FFF;
+        float:right;
+        font-size:.75em;
+        text-align:right;
+        margin: -25px 10px 0 0;
+      }
+      a:link, a:visited {
+        text-decoration:none;
+      }
+      a:hover{
+        .glyphicon{
+          color:#000;
+        }
+      }
+    }
+
+
     }
 
 
@@ -132,6 +164,7 @@ body {
     margin:10px 5px;
     color:$main;
   }
+
   .showImages {
       display: block;
       max-width:700px;
@@ -144,9 +177,8 @@ body {
   .hover-options{
     text-align:right;
     //background-color:rgba(255, 255, 255, 0.5);
-    margin: 10px 0 0 -35px;
-    // margin: -10px -15px;
-    // padding:10px;
+    margin: -25px -15px;
+    padding:10px;
     height:100%;
     .glyphicon{
       padding: 0 2.5px;

@@ -45,9 +45,10 @@ body {
     body .individualCard-container .descriptiveImages {
       display: block;
       max-width: 275px;
-      max-height: 250px;
+      max-height: 175px;
       width: auto;
-      height: auto; }
+      height: auto;
+      margin: 20px auto; }
   body .addCardForm {
     text-align: left;
     padding: 20px;
@@ -63,15 +64,36 @@ body {
     body .addCardForm-edit input[type='text'], body .addCardForm-edit textarea, body .addCardForm-edit tags-input {
       margin-bottom: 25px; }
   body .card-title {
-    font-size: 1.5em; }
+    font-size: 1.5em;
+    white-space: nowrap;
+    margin-bottom: 20px;
+    word-wrap: break-word; }
   body #done .done-title .btn-success {
     margin: -2.5px 0; }
   body #done .jumbotron {
     padding: 15px;
-    min-height: 200px;
+    min-height: 500px;
     margin: 15px 0; }
-    body #done .jumbotron .btn-success {
-      margin: 10px; }
+    body #done .jumbotron .doneItem {
+      text-align: center;
+      background-color: #5cb85c;
+      color: #FFF;
+      margin: 10px;
+      padding: 5px;
+      border: solid #4cae4c;
+      border-radius: 25px; }
+      body #done .jumbotron .doneItem:hover {
+        color: black; }
+      body #done .jumbotron .doneItem .glyphicon {
+        color: #FFF;
+        float: right;
+        font-size: 0.75em;
+        text-align: right;
+        margin: -25px 10px 0 0; }
+      body #done .jumbotron .doneItem a:link, body #done .jumbotron .doneItem a:visited {
+        text-decoration: none; }
+      body #done .jumbotron .doneItem a:hover .glyphicon {
+        color: #000; }
   body .done-title {
     margin: 10px 5px;
     color: #46b8da; }
@@ -83,7 +105,8 @@ body {
     height: auto; }
   body .hover-options {
     text-align: right;
-    margin: 10px 0 0 -35px;
+    margin: -25px -15px;
+    padding: 10px;
     height: 100%; }
     body .hover-options .glyphicon {
       padding: 0 2.5px; }

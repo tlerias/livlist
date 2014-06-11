@@ -12,7 +12,7 @@ angular.module('livListApp').controller('editCardFormCtrl', function($scope, $ro
 
   $scope.editCard = function(form, name) {
     if (name === undefined){
-      $scope.currentCard.image = "";
+      $scope.currentCard.image = "http://s3.amazonaws.com/LivelyList/placeholder.jpg";
     } else {
       $scope.currentCard.image = "http://s3.amazonaws.com/LivelyList/"+name;
     }

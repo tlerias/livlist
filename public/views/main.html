@@ -44,6 +44,7 @@
        <form class="navbar-form navbar-right" role="search">
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search" ng-model="querySearch">
+          <button class="btn btn-default" ng-click="querySearch = ''"><span class="glyphicon glyphicon-remove"></span></button>
         </div>
       </form>
     </div>
@@ -73,8 +74,9 @@
         </div>
       </div><!--done title -->
       <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}">  <span class="small" ng-if="dropContainer.length === 0"> Drag completed cards here!</span>
-        <div class="btn btn-success btn-draggable" ng-repeat="item in dropContainer | reverse " ng-show="item.title" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="dropContainer" jqyoui-draggable="{index: {{$index}},animate:true}">
+        <div class="doneItem" ng-repeat="item in dropContainer | reverse " ng-show="item.title"ng-model="dropContainer" >
           <h4>{{item.title}}</h4>
+          <p class="deleteItem"><a ng-really-message="Are you sure you want to permanently delete this?" ng-really-click="deleteCard(item._id)"><span class="glyphicon glyphicon-trash"></span></a><p>
         </div> <!--btn draggable-->
       </div><!--jumbotron -->
     </div> <!--done -->

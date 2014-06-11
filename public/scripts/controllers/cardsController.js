@@ -1,14 +1,12 @@
 'use strict';
 
 
-angular.module('livListApp').controller('CardCtrl', function($scope, $location, $rootScope, $cookieStore, Card){
+angular.module('livListApp').controller('CardCtrl', function($scope, $location, $rootScope, $cookieStore, User, Card){
   $scope.cards = [];
   $scope.dropContainer = [];
   $scope.user = $cookieStore.get('user');
   $scope.querySearch = "";
   $scope.currentCard = $cookieStore.get('card');
-
-
 
   Card.getCards($scope.user._id).then(function(promise) {
     console.log(JSON.stringify(promise));
@@ -38,6 +36,7 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
     Card.delete(id).then(function(promise) {
       Card.getCards($scope.user._id).then(function(promise) {
         $scope.cards = promise.data.cards;
+        $scope.dropContainer = promise.data.doneCards;
       });
     });
   }
@@ -45,6 +44,7 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
     Card.logout().then(function(promise) {
       $cookieStore.remove('user');
       $rootScope.message = 'Logged out!';
+      User.setUserAuthenticated(false);
       $location.url('/login');
     });
   }
@@ -68,6 +68,8 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.goBack = function () {
     $location.path('/cards');
   };
+
+
 
 
 

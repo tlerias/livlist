@@ -10,7 +10,7 @@ angular.module('livListApp').controller('formCtrl', function($scope, $location, 
 
   $scope.addCard = function(form, name) {
     if (name === undefined){
-      $scope.imgUrl = "";
+      $scope.imgUrl = "http://s3.amazonaws.com/LivelyList/placeholder.jpg";
     } else {
       $scope.imgUrl = "http://s3.amazonaws.com/LivelyList/"+name;
     }

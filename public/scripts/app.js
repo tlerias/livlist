@@ -7,9 +7,35 @@ var app = angular.module('livListApp', [
   'ngRoute',
   'ngDragDrop',
   'ngTagsInput',
-  'xeditable',
-  'flow'
+  'xeditable'
 ]);
+
+  window.routes = {
+    '/login': {
+      templateUrl: 'views/login.html',
+      controller: 'LoginCtrl',
+      requireLogin: false
+    },
+    '/signup': {
+      templateUrl: 'views/signup.html',
+      controller: 'LoginCtrl',
+      requireLogin: false
+    },
+    '/cards': {
+      templateUrl:'../views/main.html',
+      controller: 'CardCtrl',
+      requireLogin: true
+    },
+    '/card/:id/edit': {
+      templateUrl:'../views/edit.html',
+      controller: 'editCardCtrl',
+      requireLogin: false
+    },
+    '/card/:id': {
+      templateUrl:'../views/show.html',
+      controller: 'CardCtrl'
+    }
+  };
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider){
 
@@ -57,34 +83,28 @@ app.config(function ($routeProvider, $locationProvider, $httpProvider){
         );
       }
     });
-    //================================================
 
-    //================================================
-    // Define all the routes
-    //================================================
-    $routeProvider
-      .when('/login', {
-        templateUrl: 'views/login.html',
-        controller: 'LoginCtrl'
-      })
-      .when('/signup', {
-        templateUrl: 'views/signup.html',
-        controller: 'LoginCtrl'
-      })
-      .when('/cards', {
-        templateUrl:'../views/main.html',
-        controller: 'CardCtrl'
-      })
-      .when('/card/:id/edit', {
-        templateUrl:'../views/edit.html',
-        controller: 'editCardCtrl'
-      })
-      .when('/card/:id', {
-        templateUrl:'../views/show.html',
-        controller: 'CardCtrl'
-      });
+    for(var path in window.routes) {
+        $routeProvider.when(path, window.routes[path]);
+    }
+    $routeProvider.otherwise({redirectTo: '/welcome'});
+
 
   });
+
+app.run(function($rootScope, $location, User){
+
+  $rootScope.$on("$locationChangeStart", function(event, next, current) {
+    for(var i in window.routes) {
+      if(next.indexOf(i) != -1) {
+        if(window.routes[i].requireLogin && !User.getUserAuthenticated()) {
+            alert("You need to be authenticated to see this page!");
+            $location.url('/login');
+        }
+      }
+    }
+  });
+});
 
 app.run(function(editableOptions) {
   editableOptions.theme = 'bs3';
@@ -94,24 +114,10 @@ app.run(function($rootScope, $http){
   $rootScope.message = '';
 
   // Logout function is available in any pages
-  $rootScope.logout = function(){
+  $rootScope.logout = function(User){
     $rootScope.message = 'Logged out.';
+    $cookieStore.remove('user');
+    User.setUserAuthenticated(false);
     $http.post('/logout');
   };
 });
-
-app.config(['flowFactoryProvider', function (flowFactoryProvider) {
-  flowFactoryProvider.defaults = {
-    target: 'fileUpload',
-    permanentErrors: [404, 500, 501],
-    maxChunkRetries: 1,
-    chunkRetryInterval: 5000,
-    simultaneousUploads: 4,
-    singleFile: true
-  };
-  flowFactoryProvider.on('catchAll', function (event) {
-    console.log('catchAll', arguments);
-  });
-  // Can be used with different implementations of Flow.js
-  // flowFactoryProvider.factory = fustyFlowFactory;
-}]);
