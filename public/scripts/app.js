@@ -33,63 +33,63 @@ var app = angular.module('livListApp', [
     '/card/:id/edit': {
       templateUrl:'../views/edit.html',
       controller: 'editCardCtrl',
-      requireLogin: false,
+      requireLogin: true,
       showNewButton: false
     },
     '/card/:id': {
       templateUrl:'../views/show.html',
       controller: 'CardCtrl',
-      requireLogin: false,
+      requireLogin: true,
       showNewButton: false
     }
   };
 
 app.config(function ($routeProvider, $locationProvider, $httpProvider){
 
-  //================================================
-    // Check if the user is connected
-    //================================================
-    var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
-      // Initialize a new promise
-      var deferred = $q.defer();
+  // //================================================
+  //   // Check if the user is connected
+  //   //================================================
+  //   var checkLoggedin = function($q, $timeout, $http, $location, $rootScope){
+  //     // Initialize a new promise
+  //     var deferred = $q.defer();
 
-      // Make an AJAX call to check if the user is logged in
-      $http.get('/loggedin').success(function(user){
-        // Authenticated
-        console.log("logged in is true");
-        if (user !== '0')
-          $timeout(deferred.resolve, 0);
+  //     // Make an AJAX call to check if the user is logged in
+  //     $http.get('/loggedin').success(function(user){
+  //       // Authenticated
+  //       console.log("logged in is true");
+  //       if (user !== '0')
+  //         $timeout(deferred.resolve, 0);
 
-        // Not Authenticated
-        else {
-          $timeout(function(){deferred.reject();}, 0);
-          $location.url('/login');
-        }
-      });
+  //       // Not Authenticated
+  //       else {
+  //         $timeout(function(){deferred.reject();}, 0);
+  //         $location.url('/login');
+  //       }
+  //     });
 
-      return deferred.promise;
-    };
-    //================================================
+  //     return deferred.promise;
+  //   };
+    // //================================================
 
-    //================================================
-    // Add an interceptor for AJAX errors
-    //================================================
-    $httpProvider.responseInterceptors.push(function($q, $location) {
-      return function(promise) {
-        return promise.then(
-          // Success: just return the response
-          function(response){
-            return response;
-          },
-          // Error: check the error status to get only the 401
-          function(response) {
-            if (response.status === 401)
-              $location.url('/login');
-            return $q.reject(response);
-          }
-        );
-      }
-    });
+    // //================================================
+    // // Add an interceptor for AJAX errors
+    // //================================================
+    // $httpProvider.responseInterceptors.push(function($q, $location) {
+    //   return function(promise) {
+    //     return promise.then(
+    //       // Success: just return the response
+    //       function(response){
+    //         return response;
+    //       },
+    //       // Error: check the error status to get only the 401
+    //       function(response) {
+    //         if (response.status === 401)
+    //           $location.url('/login');
+    //         return $q.reject(response);
+    //       }
+    //     );
+    //   }
+    // });
 
     for(var path in window.routes) {
         $routeProvider.when(path, window.routes[path]);

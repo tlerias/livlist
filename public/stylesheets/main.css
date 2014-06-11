@@ -99,7 +99,7 @@ body {
       border: solid #76C151;
       border-radius: 25px; }
       body #done .jumbotron .doneItem:hover {
-        color: #6A6A6A; }
+        cursor: default; }
       body #done .jumbotron .doneItem .glyphicon {
         color: #F4F4F4;
         float: right;

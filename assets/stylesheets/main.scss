@@ -159,7 +159,8 @@ body {
       border-radius:25px;
 
       &:hover{
-        color:$gray;
+        //color:$gray;
+        cursor:default;
       }
 
       .glyphicon{

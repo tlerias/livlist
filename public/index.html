@@ -40,8 +40,8 @@
 
   <script src="scripts/main.js"></script>
 </head>
-<body ng-app="livListApp" ng-controller='navCtrl'>
-  <nav class="navbar navbar-default">
+<body ng-app="livListApp">
+  <nav class="navbar navbar-default" ng-controller='navCtrl'>
     <div class="navbar-header navbar-left">
       <a class="navbar-brand" href="/">LivelyList</a>
     </div>
@@ -57,7 +57,9 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-  <div class="container" ng-view=""></div>
+  <div class="container" ng-view="">
+
+  </div>
 
 </body>
 </html>
