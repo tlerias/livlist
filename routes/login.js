@@ -9,10 +9,6 @@ var passport = require('passport');
 // });
 
 
-router.get('/loggedin', function(req, res) {
-  res.send(req.isAuthenticated() ? req.user : '0');
-});
-
 // route to log in
 
 router.post('/', function(req, res, next) {
@@ -29,5 +25,21 @@ router.post('/', function(req, res, next) {
   })(req, res, next);
 
 });
+
+
+// router.get('/auth/facebook', passport.authenticate('facebook', { scope : 'email' }));
+
+// handle the callback after facebook has authenticated the user
+// router.get('/auth/facebook/callback', function(req, res, next){
+//   passport.authenticate('facebook', function(err, user){
+  //   console.log(JSON.stringify(req.user));
+  //   if (err) { return next(err); }
+  //   if (!user) { return res.send(401) }
+  //   req.logIn(user, function(err) {
+  //     if (err) { return next(err); }
+  //      res.redirect('/');
+  //    });
+  // });
+//});
 
 module.exports = router;

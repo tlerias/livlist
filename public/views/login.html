@@ -1,23 +1,39 @@
 
-{{message}}
+
+
 <div class="container">
   <div class="row">
+    <div class="col-lg-12 text-center">
+    <h1>Welcome back to LivelyList!</h1>
+    <h3>Log back into your account to get tracking!</h3>
+    </div>
+  </div>
+  <div class="row">
     <div class="col-lg-12">
-      <div class="addCardForm-edit">
-        <form name="loginForm" role="form" ng-submit="login(loginForm)" novalidate>
-          <div class="form-group">
-            <label class="control-label">Username</label>
-            <input name="email" type="text" class="form-control" ng-model="user.username" placeholder="Username"></input>
-            <label class="control-label">Password</label>
-            <input type="password" class="form-control" ng-model="user.password" placeholder="Password">
-            <div class="checkbox">
-            <label>
-              <input type="checkbox"> Remember me
-            </label>
-          </div>
-            <button type="submit" class="btn btn-info">Sign in</button>
-          </div>
-        </form>
+      <div class='box'>
+        <div class="addCardForm-login">
+          <h2 class="card-title">Login</h2>
+          <form name="loginForm" role="form" ng-submit="login(loginForm)" novalidate>
+            <div class="form-group">
+              <label class="control-label">Username</label>
+              <input name="email" type="text" class="form-control" ng-model="user.username" placeholder="Username"></input>
+              <label class="control-label">Password</label>
+              <input type="password" class="form-control" ng-model="user.password" placeholder="Password">
+              <button type="submit" class="btn btn-default">Sign in</button>
+            </div>
+            <p><span class="warning">{{message}}</span></p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <div class="col-lg-12 text-center">
+        <p>
+          Don't Have an Account?
+          <p>
+            <input type="button"  class="btn btn-default" ng-click="go('/signup')" value="Sign up now!" />
+          </p>
+        </p>
       </div>
     </div>
   </div>

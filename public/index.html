@@ -4,11 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LivList</title>
+  <link href='http://fonts.googleapis.com/css?family=Lato:300,400|Open+Sans' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="bower_components/ng-tags-input/ng-tags-input.css">
   <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet">
-  <link href="/stylesheets/main.css" rel="stylesheet">
+  <link type="text/css" rel="stylesheet" href="/stylesheets/main.css">
+
 
   <script src="/bower_components/jquery/dist/jquery.js"></script>
   <script src="/bower_components/jquery-ui/ui/jquery-ui.js"></script>
@@ -33,7 +35,6 @@
   <script src="scripts/controllers/editCardController.js"></script>
   <script src="scripts/controllers/loginController.js"></script>
   <script src="scripts/controllers/formCardController.js"></script>
-  <script src="scripts/directive/checkUser.js"></script>
   <script src="scripts/directive/ng-really.js"></script>
   <script src="scripts/filters/reverse.js"></script>
 
@@ -45,9 +46,9 @@
       <a class="navbar-brand" href="/">LivelyList</a>
     </div>
     <div class="navbar-header navbar-right">
-      <ul class="nav navbar-nav">
-        <li>{{currentUser.local.email || ""}}</li>
-        <li><button type="button" class="btn btn-info" ng-click="addCardForm()">Create Card <span class="glyphicon glyphicon-pencil"></span></button></li>
+      <ul ng-show='userIsLoggedIn' class="nav navbar-nav">
+        <li><button type="button" class="btn btn-info" ng-click="addCardForm()"><span class="glyphicon glyphicon-edit"></span></button></li>
+        <li><button type="button" class="btn btn-info" ng-click="logout(currentUser)"><span class="glyphicon glyphicon-off"></span></button></li>
       </ul>
     </div>
   </nav>

@@ -158,4 +158,9 @@ router.get('/download/:identifier', function(req, res) {
     flow.write(req.params.identifier, res);
 });
 
+router.get('/loggedin', function(req, res) {
+  res.send(req.isAuthenticated() ? req.user : '0');
+});
+
+
 module.exports = router;

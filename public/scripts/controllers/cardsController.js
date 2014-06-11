@@ -8,6 +8,7 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.querySearch = "";
   $scope.currentCard = $cookieStore.get('card');
 
+
   Card.getCards($scope.user._id).then(function(promise) {
     console.log(JSON.stringify(promise));
     $scope.cards = promise.data.cards;

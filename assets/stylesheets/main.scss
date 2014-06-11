@@ -2,33 +2,54 @@ $main:#46b8da;
 $tags:#f0ad4e;
 $headers:#d9534f;
 
+$lightBlue:#529BD2;
+$green:#76C151;
+$white:#F4F4F4;
+$offWhite:#dbdbdb;
+$darkBlue:#4783B8;
+$gray:#6A6A6A;
+
+$headerFont:'Lato', sans-serif;
+$bodyFont:'Open Sans', sans-serif;
+
 body {
   padding: 50px 0 0 0;
   text-align:left;
+  font-family:$headerFont;
+  background-color:$white;
+  color:$darkBlue;
 
   .small {
     text-align:center;
   }
 
   .navbar-default .navbar-brand{
-    color:$main;
+    color:$white;
     }
 
   .navbar-default{
-    //background-color:$main;
     box-shadow: 2px 2px 5px #888;
+    background-color:$darkBlue;
+    border-color:$darkBlue;
   }
 
   nav{
     margin-top: -50px;
     li {
       margin: 5px 5px;
+      font-family:$bodyFont;
+      color:$white;
     }
 
     .btn-info {
-      // background-color:#FFF;
-      // color:$main;
+      background-color:$white;
+      color:$darkBlue;
+      border:none;
       box-shadow: 2px 2px 5px #888;
+      &:hover{
+        background-color:$offWhite;
+        color:$darkBlue;
+      }
     }
   }
 
@@ -37,7 +58,7 @@ body {
     }
 
     .navbar-brand a:link, .navbar-brand a:visited {
-        color:#9900CC;
+        color:$white;
     }
 
   .individualCard {
@@ -116,7 +137,10 @@ body {
   #done {
     .done-title{
       .btn-success {
+        background-color:$green;
         margin:-2.5px 0;
+        border:none;
+        cursor:default;
       }
     }
     .jumbotron{
@@ -126,19 +150,19 @@ body {
 
     .doneItem{
       text-align:center;
-      background-color:#5cb85c;
-      color:#FFF;
+      background-color:$green;
+      color:$white;
       margin: 10px;
       padding:5px;
-      border:solid #4cae4c;
+      border:solid $green;
       border-radius:25px;
 
       &:hover{
-        color:black;
+        color:$gray;
       }
 
       .glyphicon{
-        color:#FFF;
+        color:$white;
         float:right;
         font-size:.75em;
         text-align:right;
@@ -149,7 +173,7 @@ body {
       }
       a:hover{
         .glyphicon{
-          color:#000;
+          color:$gray;
         }
       }
     }
@@ -162,7 +186,7 @@ body {
 
   .done-title {
     margin:10px 5px;
-    color:$main;
+    color:$darkBlue;
   }
 
   .showImages {
@@ -188,8 +212,33 @@ body {
     }
     a:hover{
       .glyphicon{
-        color:#000;
+        color:$gray;
       }
+    }
+  }
+
+  .addCardForm-login{
+    margin: 0 auto;
+    padding:10px;
+    width:90%;
+    font-family:$bodyFont;
+    color:$gray;
+
+    input[type='password'], input[type='text'] {
+      margin-bottom: 15px;
+    }
+  }
+
+  .box{
+    width:75%;
+    margin:50px auto;
+    border:solid $darkBlue;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px #ccc;
+
+    .warning{
+      color:red;
+      text-align:center;
     }
   }
 }

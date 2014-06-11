@@ -1,22 +1,35 @@
 body {
   padding: 50px 0 0 0;
-  text-align: left; }
+  text-align: left;
+  font-family: 'Lato', sans-serif;
+  background-color: #F4F4F4;
+  color: #4783B8; }
   body .small {
     text-align: center; }
   body .navbar-default .navbar-brand {
-    color: #46b8da; }
+    color: #F4F4F4; }
   body .navbar-default {
-    box-shadow: 2px 2px 5px #888; }
+    box-shadow: 2px 2px 5px #888;
+    background-color: #4783B8;
+    border-color: #4783B8; }
   body nav {
     margin-top: -50px; }
     body nav li {
-      margin: 5px 5px; }
+      margin: 5px 5px;
+      font-family: 'Open Sans', sans-serif;
+      color: #F4F4F4; }
     body nav .btn-info {
+      background-color: #F4F4F4;
+      color: #4783B8;
+      border: none;
       box-shadow: 2px 2px 5px #888; }
+      body nav .btn-info:hover {
+        background-color: #dbdbdb;
+        color: #4783B8; }
   body .navbar-default .navbar-brand {
     font-size: 2em; }
   body .navbar-brand a:link, body .navbar-brand a:visited {
-    color: #9900CC; }
+    color: #F4F4F4; }
   body .individualCard {
     padding: 20px;
     background-color: white;
@@ -69,23 +82,26 @@ body {
     margin-bottom: 20px;
     word-wrap: break-word; }
   body #done .done-title .btn-success {
-    margin: -2.5px 0; }
+    background-color: #76C151;
+    margin: -2.5px 0;
+    border: none;
+    cursor: default; }
   body #done .jumbotron {
     padding: 15px;
     min-height: 500px;
     margin: 15px 0; }
     body #done .jumbotron .doneItem {
       text-align: center;
-      background-color: #5cb85c;
-      color: #FFF;
+      background-color: #76C151;
+      color: #F4F4F4;
       margin: 10px;
       padding: 5px;
-      border: solid #4cae4c;
+      border: solid #76C151;
       border-radius: 25px; }
       body #done .jumbotron .doneItem:hover {
-        color: black; }
+        color: #6A6A6A; }
       body #done .jumbotron .doneItem .glyphicon {
-        color: #FFF;
+        color: #F4F4F4;
         float: right;
         font-size: 0.75em;
         text-align: right;
@@ -93,10 +109,10 @@ body {
       body #done .jumbotron .doneItem a:link, body #done .jumbotron .doneItem a:visited {
         text-decoration: none; }
       body #done .jumbotron .doneItem a:hover .glyphicon {
-        color: #000; }
+        color: #6A6A6A; }
   body .done-title {
     margin: 10px 5px;
-    color: #46b8da; }
+    color: #4783B8; }
   body .showImages {
     display: block;
     max-width: 700px;
@@ -113,4 +129,21 @@ body {
     body .hover-options a:link, body .hover-options a:visited {
       text-decoration: none; }
     body .hover-options a:hover .glyphicon {
-      color: #000; }
+      color: #6A6A6A; }
+  body .addCardForm-login {
+    margin: 0 auto;
+    padding: 10px;
+    width: 90%;
+    font-family: 'Open Sans', sans-serif;
+    color: #6A6A6A; }
+    body .addCardForm-login input[type='password'], body .addCardForm-login input[type='text'] {
+      margin-bottom: 15px; }
+  body .box {
+    width: 75%;
+    margin: 50px auto;
+    border: solid #4783B8;
+    border-radius: 25px;
+    box-shadow: 5px 5px 5px #ccc; }
+    body .box .warning {
+      color: red;
+      text-align: center; }
