@@ -73,7 +73,6 @@ body {
     width:100%;
     box-shadow: 5px 5px 10px #888888;
     display: inline-block;
-    border: solid .25px;;
     z-index: 1;
     overflow:hidden;
     &:hover{
@@ -195,11 +194,18 @@ body {
       }
     }
 
-
     }
 
-
   }
+
+  .search{
+    .btn-default{
+      color:$lightBlue;
+      z-index:2;
+      margin:0 -40px;
+    }
+  }
+
 
   .done-title {
     margin:10px 5px;

@@ -40,7 +40,6 @@ body {
     width: 100%;
     box-shadow: 5px 5px 10px #888888;
     display: inline-block;
-    border: solid 0.25px;
     z-index: 1;
     overflow: hidden; }
     body .individualCard:hover {
@@ -118,6 +117,10 @@ body {
         text-decoration: none; }
       body #done .jumbotron .doneItem a:hover .glyphicon {
         color: #6A6A6A; }
+  body .search .btn-default {
+    color: #529BD2;
+    z-index: 2;
+    margin: 0 -40px; }
   body .done-title {
     margin: 10px 5px;
     color: #4783B8; }
