@@ -53,7 +53,7 @@
       <span class="lead">Things I Want To Do</span>
       <hr>
     </div> <!--done title -->
-    <span class="small" ng-if="cards.length === 0"> You don't have anything to do, add a card! <a ng-click="jumpCard()">Create a new card.</a></span>
+    <span class="small" ng-if="cards.length === 0"> You don't have anything to do! <a ng-click="jumpCard()">Create a new card.</a></span>
     <div class="btn btn-droppable individualCard-container" ng-repeat="item in cards | orderBy: 'create_date':true| filter: querySearch" data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
       <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true}" ng-hide="!item.title" ng-mouseover="hover(item)" ng-mouseout="hover(item)">
         <a class="card-title" ng-click="goToCard(item._id)"> {{item.title}} </span></a>
