@@ -52,6 +52,9 @@ body {
         color:$darkBlue;
       }
     }
+    .btn-warning {
+        color:#555;
+      }
   }
 
   .navbar-default .navbar-brand{
@@ -153,7 +156,7 @@ body {
         margin:-2.5px 0;
         border:none;
         cursor:default;
-        font-size:1.5em;
+        font-size:1em;
       }
     }
     .jumbotron{

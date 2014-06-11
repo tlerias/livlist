@@ -8,7 +8,7 @@ var app = angular.module('livListApp', [
   'ngDragDrop',
   'ngTagsInput',
   'xeditable',
-  'flow'
+  'flow',
 ]);
 
   window.routes = {

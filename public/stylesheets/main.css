@@ -26,6 +26,8 @@ body {
       body nav .btn-info:hover {
         background-color: #dbdbdb;
         color: #4783B8; }
+    body nav .btn-warning {
+      color: #555; }
   body .navbar-default .navbar-brand {
     font-size: 2em; }
   body .navbar-brand a:link, body .navbar-brand a:visited {
@@ -91,7 +93,7 @@ body {
     margin: -2.5px 0;
     border: none;
     cursor: default;
-    font-size: 1.5em; }
+    font-size: 1em; }
   body #done .jumbotron {
     padding: 15px;
     min-height: 500px;
