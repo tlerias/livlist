@@ -104,6 +104,17 @@ body {
 
     }
   }
+  .small{
+      font-size:1em;
+    }
+
+  .main-container{
+    a{
+      display:inline-block;
+      cursor:pointer;
+    }
+
+  }
 
   .addCardForm {
     text-align:left;
@@ -142,6 +153,7 @@ body {
         margin:-2.5px 0;
         border:none;
         cursor:default;
+        font-size:1.5em;
       }
     }
     .jumbotron{

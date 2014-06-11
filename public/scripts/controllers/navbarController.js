@@ -2,7 +2,7 @@
 
 
 angular.module('livListApp').controller('navCtrl', function($scope, $rootScope, $cookieStore, $location){
-  $scope.showForm = {form: false};
+  $rootScope.showForm = {form: false};
   $scope.currentUser = $cookieStore.get('user');
   $scope.urlPath = $location.path();
 
@@ -19,7 +19,7 @@ $scope.$on('$locationChangeStart', function(event) {
 });
 
 
-  $scope.addCardForm = function() {
+  $rootScope.addCardForm = function() {
     $scope.showForm.form = !$scope.showForm.form;
   };
 

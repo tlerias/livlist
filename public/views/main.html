@@ -1,10 +1,9 @@
 <!--
 <button type="button" class="btn btn-default" ng-click="addCardForm()" ng-show="showForm.form">Hide
 </button> -->
-
 <div class="container">
   <div class="row">
-    <div class="col-lg-12" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+    <div class="col-lg-12" id="newCForm" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
       flow-files-submitted="$flow.upload()" ng-controller="formCtrl">
       <div class="addCardForm pull-right" ng-show="showForm.form">
         <form name="cardForm" role="form" ng-submit="addCard(cardForm, $flow.files[0].name)" novalidate>
@@ -32,7 +31,7 @@
             <label class="control-label">Description</label>
             <textarea name="descriptionText" type="text" class="form-control" ng-model="descriptionText" placeholder="Tell me about it..." rows="10"></textarea>
             <tags-input ng-model='tagsText'></tags-input>
-            <button type="submit" class="btn btn-info">Add Card</button>
+            <button type="submit" ng-click="$flow.cancel()" class="btn btn-info">Add Card</button>
           </div> <!--form group -->
         </form>
       </div> <!--addCarm form -->
@@ -49,12 +48,12 @@
     </div>
   </div>
 <div class="row">
-  <div class= "container-fluid col-lg-8">
+  <div class= "container-fluid col-lg-8 main-container">
     <div class="done-title">
       <span class="lead">Things I Want To Do</span>
       <hr>
     </div> <!--done title -->
-    <span class="small" ng-if="cards.length === 0"> You don't have anything to do, add a card!</span>
+    <span class="small" ng-if="cards.length === 0"> You don't have anything to do, add a card! <a ng-click="jumpCard()">Create a new card.</a></span>
     <div class="btn btn-droppable individualCard-container" ng-repeat="item in cards | orderBy: 'create_date':true| filter: querySearch" data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
       <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true}" ng-hide="!item.title" ng-mouseover="hover(item)" ng-mouseout="hover(item)">
         <a class="card-title" ng-click="goToCard(item._id)"> {{item.title}} </span></a>

@@ -15,13 +15,10 @@ angular.module('livListApp').controller('formCtrl', function($scope, $location, 
       $scope.imgUrl = "http://s3.amazonaws.com/LivelyList/"+name;
     }
     if($scope.titleText === ""){
-      console.log("text is empty: "+true)
       $scope.titleText = "Untitled";
     }
     Card.create($scope.titleText, $scope.descriptionText, $scope.tagsText, [$scope.user._id], $scope.imgUrl).then(function(promise) {
-      console.log("hello");
         $scope.cards.unshift(promise.data);
-        console.log("added cards: " + $scope.cards);
         clearAll();
       });
   };

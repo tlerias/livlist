@@ -70,6 +70,13 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
     $location.path('/cards');
   };
 
+  $scope.jumpCard = function(){
+    $rootScope.addCardForm();
+    $location.hash('newCForm')
+
+
+  }
+
 
 
 

@@ -15,32 +15,27 @@ var app = angular.module('livListApp', [
     '/login': {
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl',
-      requireLogin: false,
-      showNewButton: false
+      requireLogin: false
     },
     '/signup': {
       templateUrl: 'views/signup.html',
       controller: 'LoginCtrl',
-      requireLogin: false,
-      showNewButton: false
+      requireLogin: false
     },
     '/cards': {
       templateUrl:'../views/main.html',
       controller: 'CardCtrl',
-      requireLogin: true,
-      showNewButton: true
+      requireLogin: true
     },
     '/card/:id/edit': {
       templateUrl:'../views/edit.html',
       controller: 'editCardCtrl',
-      requireLogin: true,
-      showNewButton: false
+      requireLogin: true
     },
     '/card/:id': {
       templateUrl:'../views/show.html',
       controller: 'CardCtrl',
-      requireLogin: true,
-      showNewButton: false
+      requireLogin: true
     }
   };
 

@@ -62,6 +62,11 @@ body {
       width: auto;
       height: auto;
       margin: 20px auto; }
+  body .small {
+    font-size: 1em; }
+  body .main-container a {
+    display: inline-block;
+    cursor: pointer; }
   body .addCardForm {
     text-align: left;
     padding: 20px;
@@ -85,7 +90,8 @@ body {
     background-color: #76C151;
     margin: -2.5px 0;
     border: none;
-    cursor: default; }
+    cursor: default;
+    font-size: 1.5em; }
   body #done .jumbotron {
     padding: 15px;
     min-height: 500px;
