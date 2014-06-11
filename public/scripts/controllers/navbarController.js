@@ -7,9 +7,16 @@ angular.module('livListApp').controller('navCtrl', function($scope, $rootScope, 
   $scope.urlPath = $location.path();
 
 
-// $scope.$on('$routeUpdate', function(){
-//   console.log("location path for navbar: "+ $scope.urlPath);
-// });
+$scope.$on('$locationChangeStart', function(event) {
+  $scope.urlPath = $location.path();
+   console.log('in navbar controller, checking path: '+ $scope.urlPath);
+   if($scope.urlPath === '/cards'){
+    $scope.hideNewCardButton = true;
+   } else {
+    $scope.hideNewCardButton = false;
+   }
+
+});
 
 
   $scope.addCardForm = function() {
@@ -24,13 +31,6 @@ angular.module('livListApp').controller('navCtrl', function($scope, $rootScope, 
   //   return false;
   // }
 
-  // $scope.$watchCollection('currentUser', function(newIsh, oldIsh){
-  //   return $scope.checkCurrentUser()
-  // });
-
-  // $scope.$on('$routeChangeSuccess', function (next, current) {
-  //   console.log('route change success: '+ $scope.urlPath)
-  // });
 
   $scope.$on('$routeChangeStart', function (next, current) {
     // console.log('next:' + JSON.stringify(next));
