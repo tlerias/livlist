@@ -1,7 +1,9 @@
 'use strict';
 
 
-angular.module('livListApp').controller('editCardCtrl', function($scope, $routeParams, $location, Card){});
+angular.module('livListApp').controller('editCardCtrl', function($scope, $rootScope, $routeParams, $location, Card){
+
+});
 
 angular.module('livListApp').controller('editCardFormCtrl', function($scope, $routeParams, $location, Card){
   var id = $routeParams.id;
@@ -12,7 +14,7 @@ angular.module('livListApp').controller('editCardFormCtrl', function($scope, $ro
 
   $scope.editCard = function(form, name) {
     if (name === undefined){
-      $scope.currentCard.image = "http://s3.amazonaws.com/LivelyList/placeholder.jpg";
+      $scope.currentCard.image = $scope.currentCard.image;
     } else {
       $scope.currentCard.image = "http://s3.amazonaws.com/LivelyList/"+name;
     }

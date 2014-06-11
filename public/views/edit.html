@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-lg-12" flow-init flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
       flow-files-submitted="$flow.upload()" ng-controller="editCardFormCtrl" >
-      <div class="addCardForm-edit">
+      <div class="addCardForm">
         <form name="cardForm" role="form" ng-submit="editCard(cardForm, $flow.files[0].name)" novalidate>
           <div class="form-group">
             <label class="control-label">Title</label>
@@ -12,7 +12,7 @@
 
             <div>
               <div class="thumbnail" ng-hide="$flow.files.length">
-                <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+                <img ng-src={{currentCard.image}} />
               </div>
               <div class="thumbnail" ng-show="$flow.files.length">
                 <img flow-img="$flow.files[0]" />
@@ -31,6 +31,7 @@
             <textarea name="descriptionText" type="text" class="form-control" ng-model="currentCard.content"></textarea>
             <tags-input ng-model='currentCard.tags'></tags-input>
             <button type="submit" class="btn btn-info">Save</button>
+            <button type="submit" class="btn btn-primary">Go Back</button>
           </div>
         </form>
       </div>

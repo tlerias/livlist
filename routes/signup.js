@@ -12,6 +12,7 @@ var passport = require('passport');
 router.post('/', function(req, res, next) {
   passport.authenticate('local-signup', function (err, user, info) {
     if(err) { return next(err); }
+    if(!user) {return res.send(403, info.error)}
     res.send(200, user);
   })(req, res, next);
 

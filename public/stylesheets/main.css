@@ -140,10 +140,28 @@ body {
       margin-bottom: 15px; }
   body .box {
     width: 75%;
-    margin: 50px auto;
+    margin: 25px auto;
     border: solid #4783B8;
     border-radius: 25px;
-    box-shadow: 5px 5px 5px #ccc; }
+    box-shadow: 5px 5px 5px #ccc;
+    background-color: #fdfdfd;
+    padding: 10px; }
+    body .box img {
+      margin: 25px auto; }
+    body .box p {
+      margin: 50px 50px 25px 50px; }
     body .box .warning {
       color: red;
+      display: block;
+      width: 100%;
       text-align: center; }
+  body .cardNav {
+    margin: 0 0 -15px 125px;
+    padding: 10px; }
+    body .cardNav a {
+      margin-left: 10px;
+      cursor: pointer;
+      font-size: 1.25em; }
+      body .cardNav a:hover {
+        text-decoration: none;
+        color: #6A6A6A; }

@@ -1,18 +1,22 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <a ng-click="goBack()"><span class="glyphicon glyphicon-backward"></span> Go Back</a>
-      <a ng-click="goEdit(currentCard._id)"> <span class="glyphicon glyphicon-pencil"></span></a>
-       <a ng-really-message="Are you sure you want to permanently delete this?" ng-really-click="deleteCard(item._id)"><span class="glyphicon glyphicon-trash
-"></span></a>
+      <div class='cardNav'>
+        <a ng-click="goBack()"><span class="glyphicon glyphicon-backward"></span></a>
+        <a ng-click="goEdit(currentCard._id)"> <span class="glyphicon glyphicon-pencil"></span></a>
+         <a ng-really-message="Are you sure you want to permanently delete this?" ng-really-click="deleteCard(item._id)"><span class="glyphicon glyphicon-trash
+  "></span></a>
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-lg-12">
-      <span class='card-title'>{{currentCard.title || "Untitiled"}}</span>
+    <div class="col-lg-12 text-center">
+      <div class='box'>
+      <h3><span class='card-title'>{{currentCard.title || "Untitiled"}}</span></h3>
       <p><img class="showImages" ng-src={{currentCard.image}} /></p>
       <p>{{currentCard.content || "No Description"}}</p>
-       <tags-input ng-model='currentCard.tags'></tags-input>
+      <p><tags-input ng-model='currentCard.tags'></tags-input></p>
+        </div>
       </div>
     </div>
   </div>

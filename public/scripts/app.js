@@ -15,27 +15,32 @@ var app = angular.module('livListApp', [
     '/login': {
       templateUrl: 'views/login.html',
       controller: 'LoginCtrl',
-      requireLogin: false
+      requireLogin: false,
+      showNewButton: false
     },
     '/signup': {
       templateUrl: 'views/signup.html',
       controller: 'LoginCtrl',
-      requireLogin: false
+      requireLogin: false,
+      showNewButton: false
     },
     '/cards': {
       templateUrl:'../views/main.html',
       controller: 'CardCtrl',
-      requireLogin: true
+      requireLogin: true,
+      showNewButton: true
     },
     '/card/:id/edit': {
       templateUrl:'../views/edit.html',
       controller: 'editCardCtrl',
-      requireLogin: false
+      requireLogin: false,
+      showNewButton: false
     },
     '/card/:id': {
       templateUrl:'../views/show.html',
       controller: 'CardCtrl',
-      requireLogin: false
+      requireLogin: false,
+      showNewButton: false
     }
   };
 
@@ -105,6 +110,9 @@ app.run(function($rootScope, $location, User){
     }
   });
 });
+
+
+
 
 app.run(function(editableOptions) {
   editableOptions.theme = 'bs3';
