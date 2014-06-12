@@ -106,7 +106,8 @@ body {
       border: solid #76C151;
       border-radius: 25px; }
       body #done .jumbotron .doneItem:hover {
-        cursor: pointer; }
+        cursor: pointer;
+        border: 3px dashed #F4F4F4; }
       body #done .jumbotron .doneItem .glyphicon {
         color: #F4F4F4;
         float: right;

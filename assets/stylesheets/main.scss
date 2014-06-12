@@ -175,6 +175,7 @@ body {
       &:hover{
         //color:$gray;
         cursor:pointer;
+        border:3px dashed $white;
       }
 
       .glyphicon{
