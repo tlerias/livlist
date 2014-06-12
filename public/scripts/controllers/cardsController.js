@@ -15,6 +15,9 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.onStopFromDone = function(){
     $('.acceptContainer').addClass('ng-hide');
     $('.acceptContainer').removeClass('ng-show');
+    console.log('dragging')
+
+
   }
 
   $scope.onDragToDone = function(){
@@ -98,7 +101,7 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
 
   $scope.jumpCard = function(){
     $rootScope.addCardForm();
-    $location.hash('newCForm')
+    $location.hash('newCForm');
 
 
   }

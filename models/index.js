@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     Schema = mongoose.Schema;
 
-mongoose.connect('mongodb://localhost/personalProj');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/personalProj');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 

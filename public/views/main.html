@@ -41,7 +41,7 @@
     <div class="col-lg-12">
        <form class="navbar-form navbar-right search form-inline" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search" ng-model="querySearch">
+          <input type="text" class="form-control" placeholder="Search" ng-model="querySearch" ng-if='cards.length > 0'>
           <button class="btn btn-default" ng-click="querySearch = ''" ng-show='querySearch.length > 0'><span class="glyphicon glyphicon-remove"></span></button>
         </div>
       </form>
@@ -76,11 +76,11 @@
         <hr>
       </div><!--done title -->
       <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}">  <span class="small" ng-hide='checkIfShow()' ng-if="dropContainer.length === 0"> Drag completed cards here!</span>
-        <div class="doneItem btn-draggable" data-drag="true" ng-repeat="item in dropContainer" data-jqyoui-options="{revert: 'invalid'}" ng-show="item.title" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true, onDrag: 'onDragFromDone', onStop: 'onStopFromDone' }" ng-model="dropContainer" >
+        <div class="doneItem btn-draggable" data-drag="true" ng-repeat="item in dropContainer" data-jqyoui-options="{revert: 'invalid'}" ng-show="item.title" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true, onDrag: 'onDragFromDone', onStop: 'onStopFromDone'}" ng-model="dropContainer" >
           <h4>{{item.title}}</h4>
           <p class="deleteItem"><a ng-really-message="Are you sure you want to permanently delete this?" ng-really-click="deleteCard(item._id)"><span class="glyphicon glyphicon-trash"></span></a><p>
         </div> <!--btn draggable-->
-        <div class='dropToDone ng-hide'>Are you done?</div>
+        <div class='dropToDone ng-hide'>Did you do this?</div>
       </div><!--jumbotron -->
     </div> <!--done -->
   </div><!--row -->
