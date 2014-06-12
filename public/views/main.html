@@ -53,11 +53,11 @@
       <span class="lead">Things I Want To Do</span>
       <hr>
     </div> <!--done title -->
-    <span class="small" ng-if="cards.length === 0"> You don't have anything to do! <a ng-click="jumpCard()">Create a new card.</a></span>
+    <span class="small" ng-if="cards.length === 0" ng-hide='checkIfShow()'> You don't have anything to do! <a ng-click="jumpCard()">Create a new card.</a></span>
     <div class="btn btn-droppable acceptContainer ng-hide"  data-drop="true" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])', hoverClass: 'drop-hover' }" jqyoui-droppable="{multiple:true}">Add me back!</div>
 
     <div class="btn btn-droppable individualCard-container" ng-repeat="item in cards | filter: querySearch" data-drop="false" ng-model='cards' data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=cards])'}"  jqyoui-droppable="{index: {{$index}}}">
-      <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true}" ng-hide="!item.title" ng-mouseover="hover(item)" ng-mouseout="hover(item)">
+      <div class="btn-draggable individualCard" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="cards" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true, onDrag: 'onDragToDone', onStop: 'onStopToDone'}" ng-hide="!item.title" ng-mouseover="hover(item)" ng-mouseout="hover(item)">
         <a class="card-title" ng-click="goToCard(item._id)">{{item.title}}</span></a>
         <p><img class="descriptiveImages" ng-src={{item.image}} height="300" width="480"}} /></p>
         <p><span class="tags" ng-repeat='tag in item.tags'><a ng-click="changeFilter(tag.text)"> #{{tag.text}} </span></a></p>
@@ -75,11 +75,12 @@
         </div>
         <hr>
       </div><!--done title -->
-      <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}">  <span class="small" ng-if="dropContainer.length === 0"> Drag completed cards here!</span>
-        <div class="doneItem btn-draggable" data-drag="true" ng-repeat="item in dropContainer" data-jqyoui-options="{revert: 'invalid'}" ng-show="item.title" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true, onDrag: 'onDrag', onStop: 'onStop' }" ng-model="dropContainer" >
+      <div class="jumbotron" data-drop="true" ng-model="dropContainer" data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=dropContainer])'}" jqyoui-droppable="{multiple:true}">  <span class="small" ng-hide='checkIfShow()' ng-if="dropContainer.length === 0"> Drag completed cards here!</span>
+        <div class="doneItem btn-draggable" data-drag="true" ng-repeat="item in dropContainer" data-jqyoui-options="{revert: 'invalid'}" ng-show="item.title" jqyoui-draggable="{index: {{$index}}, placeholder:false, animate:true, onDrag: 'onDragFromDone', onStop: 'onStopFromDone' }" ng-model="dropContainer" >
           <h4>{{item.title}}</h4>
           <p class="deleteItem"><a ng-really-message="Are you sure you want to permanently delete this?" ng-really-click="deleteCard(item._id)"><span class="glyphicon glyphicon-trash"></span></a><p>
         </div> <!--btn draggable-->
+        <div class='dropToDone ng-hide'>Are you done?</div>
       </div><!--jumbotron -->
     </div> <!--done -->
   </div><!--row -->

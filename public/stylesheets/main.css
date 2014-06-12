@@ -186,6 +186,15 @@ body {
   border: 5px dotted #529BD2;
   padding: 125px 0 0 0; }
 
+.dropToDone {
+  height: 100px;
+  width: 350px;
+  color: #76C151;
+  font-size: 1.5em;
+  border: 5px dotted #76C151;
+  text-align: center;
+  padding: 25px 25px; }
+
 @media (min-width: 0px) and (max-width: 767px) {
   body nav {
     margin-top: -50px;

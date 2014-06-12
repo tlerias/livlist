@@ -8,15 +8,27 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.querySearch = "";
   $scope.currentCard = $cookieStore.get('card');
 
-  $scope.onDrag = function(){
+  $scope.onDragFromDone = function(){
     $('.acceptContainer').addClass('ng-show');
     $('.acceptContainer').removeClass('ng-hide');
   }
-  $scope.onStop = function(){
+  $scope.onStopFromDone = function(){
     $('.acceptContainer').addClass('ng-hide');
     $('.acceptContainer').removeClass('ng-show');
   }
 
+  $scope.onDragToDone = function(){
+    $('.dropToDone').addClass('ng-show');
+    $('.dropToDone').removeClass('ng-hide');
+  }
+  $scope.onStopToDone = function(){
+    $('.dropToDone').addClass('ng-hide');
+    $('.dropToDone').removeClass('ng-show');
+  }
+
+  $scope.checkIfShow = function(){
+   return $('.acceptContainer').hasClass('ng-show') || $('.dropToDone').hasClass('ng-show')
+  }
 
 
   Card.getCards($scope.user._id).then(function(promise) {

@@ -301,6 +301,17 @@ body {
 
 }
 
+.dropToDone{
+  height:100px;
+  width:350px;
+  color:$green;
+  font-size:1.5em;
+  border:5px dotted $green;
+  text-align:center;
+  padding:25px 25px;
+
+}
+
 
 @media (min-width: 0px) and (max-width: 767px){
   body{
