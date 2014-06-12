@@ -14,7 +14,7 @@ var sass = require('node-sass'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
     MongoStore = require('connect-mongostore')(session),
-    findDB = process.env.MONGOLAB_URI || 'personalProj';
+    findDB = 'LivelyList' || 'personalProj',
 
 
     routes = require('./routes'),
