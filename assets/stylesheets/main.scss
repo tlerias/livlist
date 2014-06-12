@@ -290,4 +290,34 @@ body {
   }
 }
 
+@media (min-width: 0px) and (max-width: 767px){
+  body{
+    nav{
+      margin-top: -50px;
+      li {
+        text-align:right;
+        margin: 5px 25px;
+        font-family:$bodyFont;
+        color:$white;
+      }
+    }
+  }
+
+  .search{
+    float:right;
+    width:100%;
+    display:inline-block;
+    .btn-default{
+      position:absolute;
+      top:19px;
+      display:inline-block;
+
+    }
+ }
+
+
+
+}
+
+
 
