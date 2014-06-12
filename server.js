@@ -22,8 +22,6 @@ var sass = require('node-sass'),
     signup_routes = require('./routes/signup');
 
 
-var localDB = new MongoStore('mongodb://localhost/personalProj');
-var productionDB = new MongoStore(process.env.MONGOLAB_URI);
 
 var app = express();
 
@@ -49,7 +47,7 @@ app.use(
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
-app.use(session({ secret: 'taraiscool', store: new MongoStore({db: process.env.MONGOLAB_URI || 'mongodb://localhost/personalProj'}) })); // session secret, the salt used to encrypt the session ids which are stored in the client's browser.
+app.use(session({ secret: 'taraiscool', store: new MongoStore(process.env.MONGOLAB_URI || 'mongodb://localhost/personalProj' ) })); // session secret, the salt used to encrypt the session ids which are stored in the client's browser.
 app.use(passport.initialize()); //creates our passport object
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored
