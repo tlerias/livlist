@@ -9,7 +9,7 @@ angular.module('livListApp').controller('LoginCtrl', function($scope, $rootScope
   // Register the login() function
   $scope.login = function(){
     $http.post('/login', {
-      email: $scope.user.username,
+      email: $scope.user.username.toLowerCase(),
       password: $scope.user.password,
     })
     .success(function(user){
@@ -54,7 +54,7 @@ angular.module('livListApp').controller('LoginCtrl', function($scope, $rootScope
       $rootScope.message = "You must enter a password";
     } else{
         $http.post('/signup', {
-        email: $scope.user.username,
+        email: $scope.user.username.toLowerCase(),
         password: $scope.user.password,
     })
       .success(function(user){
