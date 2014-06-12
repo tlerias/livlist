@@ -291,15 +291,14 @@ body {
 }
 
 .acceptContainer{
-  position:fixed;
-  background-color:$gray;
-  left:0;
-  margin:80px 0;
-  height:300px;
-  width:100px;
-  color:$white;
+  margin:0 auto;
+  height:100px;
+  width:350px;
+  color:$darkBlue;
+  border:5px dotted $lightBlue;
 
 }
+
 
 @media (min-width: 0px) and (max-width: 767px){
   body{

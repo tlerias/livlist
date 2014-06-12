@@ -178,13 +178,11 @@ body {
         color: #6A6A6A; }
 
 .acceptContainer {
-  position: fixed;
-  background-color: #6A6A6A;
-  left: 0;
-  margin: 80px 0;
-  height: 300px;
-  width: 100px;
-  color: #F4F4F4; }
+  margin: 0 auto;
+  height: 100px;
+  width: 350px;
+  color: #4783B8;
+  border: 5px dotted #529BD2; }
 
 @media (min-width: 0px) and (max-width: 767px) {
   body nav {

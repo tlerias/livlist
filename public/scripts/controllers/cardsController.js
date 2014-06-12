@@ -8,6 +8,16 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
   $scope.querySearch = "";
   $scope.currentCard = $cookieStore.get('card');
 
+  $scope.onDrag = function(){
+    $('.acceptContainer').addClass('ng-show');
+    $('.acceptContainer').removeClass('ng-hide');
+  }
+  $scope.onStop = function(){
+    $('.acceptContainer').addClass('ng-hide');
+    $('.acceptContainer').removeClass('ng-show');
+  }
+
+
 
   Card.getCards($scope.user._id).then(function(promise) {
     console.log(JSON.stringify(promise));
