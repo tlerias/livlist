@@ -14,6 +14,7 @@ var sass = require('node-sass'),
     bodyParser = require('body-parser'),
     session = require('express-session'),
     MongoStore = require('connect-mongostore')(session),
+    findDB = process.env.MONGOLAB_URI || 'personalProj';
 
 
     routes = require('./routes'),
@@ -47,7 +48,7 @@ app.use(
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
-app.use(session({ secret: 'taraiscool', store: new MongoStore({db: process.env.MONGOLAB_URI}) })); // session secret, the salt used to encrypt the session ids which are stored in the client's browser.
+app.use(session({ secret: 'taraiscool', store: new MongoStore({db: findDB}) })); // session secret, the salt used to encrypt the session ids which are stored in the client's browser.
 app.use(passport.initialize()); //creates our passport object
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored
