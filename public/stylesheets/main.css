@@ -179,10 +179,11 @@ body {
 
 @media (min-width: 0px) and (max-width: 767px) {
   body nav {
-    margin-top: -50px; }
-    body nav li {
-      text-align: right;
-      margin: 5px 25px;
+    margin-top: -50px;
+    max-height: 75px; }
+    body nav ul li {
+      float: right;
+      margin: -25px 10px 0 0;
       font-family: 'Open Sans', sans-serif;
       color: #F4F4F4; }
   .search {

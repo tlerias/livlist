@@ -294,11 +294,14 @@ body {
   body{
     nav{
       margin-top: -50px;
-      li {
-        text-align:right;
-        margin: 5px 25px;
-        font-family:$bodyFont;
-        color:$white;
+      max-height:75px;
+      ul{
+        li {
+          float:right;
+          margin: -25px 10px 0 0;
+          font-family:$bodyFont;
+          color:$white;
+        }
       }
     }
   }
