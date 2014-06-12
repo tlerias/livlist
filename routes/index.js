@@ -13,7 +13,7 @@ var express = require('express'),
 
 //AWS.config.loadFromPath('config/aws.json');
 var config = new AWS.Config({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, region: 'us-west-1'
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, region: 'us-east-1'
 });
 
 AWS.config.update(config);
@@ -23,10 +23,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 router.get('/cards/:id', function(req, res) {
   var id = req.params.id;
-  console.log("getting cards for user id: " + id);
   models.User.find({_id: id}, function(err, user) {
-    console.log(JSON.stringify(user));
-    console.log("user cards log: " + user[0].cards)
     models.Card.find({_id: {$in: user[0].cards}}, function(err, cards) {
 
       models.Card.find({_id: {$in: user[0].doneCards}}, function(err, doneCards) {
@@ -46,16 +43,11 @@ router.post('/add', function(req, res) {
       owners = req.body.owners,
       image = req.body.image,
       owner = req.body.owners.toString();
-      console.log("image: " + image);
-      console.log("owner: " + owner);
-      console.log('express tags: ' + tags);
 
   var c = new models.Card({ "title": title, "content":content, tags: tags, showEdit: false, owners: owners, image: image});
   c.save(function(err, newCard) {
     if(err) return console.log(err);
-    console.log("card id: " + newCard._id)
     models.User.update({"_id": owner}, {$push: {"cards": newCard._id}}, function(err, doc) {
-       console.log("route just created a card!: " + JSON.stringify(doc));
       res.json(newCard, 200);
     });
   });
@@ -66,7 +58,6 @@ router.get('/card/:id/edit', function(req, res) {
   console.log("edit id: " + id);
   models.Card.findById(id, function(err,card) {
     if(err) throw err;
-    console.log("express get card to edit : " + card);
     res.json(card, 200);
   });
 });
@@ -96,8 +87,7 @@ router.post('/main/:userId', function(req, res) {
   for (var i = 0; i < posts.length; i++){
     postIds.push(ObjectId(posts[i]._id));
   }
-  console.log("posts: " + JSON.stringify(postIds));
-  console.log("user: " + uId);
+
   models.User.update({"_id": uId}, {$pullAll: {"doneCards": postIds}}, function(err,doc){
     if(err) console.log(err)
     models.User.update({"_id": uId}, {"cards": postIds}, function(err,doc){
@@ -141,7 +131,6 @@ router.get('/fileUpload', function(req, res) {
 });
 
 router.post('/fileUpload', multipartMiddleware, function(req, res) {
-  console.log("in file upload post");
   flow.post(req, function(status, filename, original_filename, identifier) {
     console.log("status: "+ status, filename, original_filename, identifier);
     if(status === "done"){
