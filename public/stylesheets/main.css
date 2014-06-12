@@ -95,7 +95,7 @@ body {
     font-size: 1em; }
   body #done .jumbotron {
     padding: 15px;
-    min-height: 500px;
+    min-height: 1000px;
     margin: 15px 0; }
     body #done .jumbotron .doneItem {
       text-align: center;
@@ -178,11 +178,13 @@ body {
         color: #6A6A6A; }
 
 .acceptContainer {
-  margin: 0 auto;
-  height: 100px;
+  margin: 0 0 0 15px;
+  height: 350px;
   width: 350px;
   color: #4783B8;
-  border: 5px dotted #529BD2; }
+  font-size: 1.5em;
+  border: 5px dotted #529BD2;
+  padding: 100px 0 0 0; }
 
 @media (min-width: 0px) and (max-width: 767px) {
   body nav {

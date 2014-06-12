@@ -160,7 +160,7 @@ body {
     }
     .jumbotron{
       padding:15px;
-      min-height: 500px;
+      min-height: 1000px;
       margin:15px 0;
 
     .doneItem{
@@ -291,11 +291,13 @@ body {
 }
 
 .acceptContainer{
-  margin:0 auto;
-  height:100px;
+  margin: 0 0 0 15px;
+  height:350px;
   width:350px;
   color:$darkBlue;
+  font-size:1.5em;
   border:5px dotted $lightBlue;
+  padding:100px 0 0 0;
 
 }
 
