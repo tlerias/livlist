@@ -11,7 +11,13 @@ var express = require('express'),
     AWS = require('aws-sdk'),
     fs = require('fs');
 
-AWS.config.loadFromPath('config/aws.json');
+//AWS.config.loadFromPath('config/aws.json');
+var config = new AWS.Config({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY, region: 'us-west-1'
+});
+
+AWS.config.update(config);
+
 
 var ObjectId = require('mongoose').Types.ObjectId;
 
