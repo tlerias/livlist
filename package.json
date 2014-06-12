@@ -1,6 +1,6 @@
 {
   "name": "livlust-app",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "What have you done with your life?",
   "main": "server.js",
   "author": "https://github.com/tlerias",
