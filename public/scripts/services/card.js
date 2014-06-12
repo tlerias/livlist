@@ -50,6 +50,13 @@ app.factory('Card', function ($http, $routeParams){
       return headers;
      });
      return doneCardPromise;
+    },
+
+    updateMainCards: function(posts, userId){
+     var mainCardPromise = $http.post('/main/'+userId, { posts: posts }).success(function(headers){
+      return headers;
+      });
+     return mainCardPromise;
     }
   };
 

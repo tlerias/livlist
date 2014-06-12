@@ -106,7 +106,7 @@ body {
       border: solid #76C151;
       border-radius: 25px; }
       body #done .jumbotron .doneItem:hover {
-        cursor: default; }
+        cursor: pointer; }
       body #done .jumbotron .doneItem .glyphicon {
         color: #F4F4F4;
         float: right;
@@ -176,6 +176,15 @@ body {
       body .cardNav a:hover {
         text-decoration: none;
         color: #6A6A6A; }
+
+.acceptContainer {
+  position: fixed;
+  background-color: #6A6A6A;
+  left: 0;
+  margin: 80px 0;
+  height: 300px;
+  width: 100px;
+  color: #F4F4F4; }
 
 @media (min-width: 0px) and (max-width: 767px) {
   body nav {

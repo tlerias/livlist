@@ -73,11 +73,28 @@ router.post('/done/:userId', function(req, res) {
   for (var i = 0; i < posts.length; i++){
     postIds.push(ObjectId(posts[i]._id));
   }
-  console.log("posts: " + JSON.stringify(postIds));
-  console.log("user: " + uId);
   models.User.update({"_id": uId}, {$pullAll: {"cards": postIds}}, function(err,doc){
     if(err) console.log(err)
     models.User.update({"_id": uId}, {"doneCards": postIds}, function(err,doc){
+    if(err) console.log(err);
+    res.send(200);
+    });
+  });
+});
+
+router.post('/main/:userId', function(req, res) {
+  console.log("in main route");
+  var posts = req.body.posts;
+  var uId = req.params.userId;
+  var postIds = [];
+  for (var i = 0; i < posts.length; i++){
+    postIds.push(ObjectId(posts[i]._id));
+  }
+  console.log("posts: " + JSON.stringify(postIds));
+  console.log("user: " + uId);
+  models.User.update({"_id": uId}, {$pullAll: {"doneCards": postIds}}, function(err,doc){
+    if(err) console.log(err)
+    models.User.update({"_id": uId}, {"cards": postIds}, function(err,doc){
     if(err) console.log(err);
     res.send(200);
     });

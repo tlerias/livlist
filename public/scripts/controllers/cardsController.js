@@ -20,7 +20,11 @@ angular.module('livListApp').controller('CardCtrl', function($scope, $location, 
     if (newlyDoneCards === oldDoneCards){ return }
       console.log(newlyDoneCards);
       Card.updateDone(newlyDoneCards, $scope.user._id).then(function(promise) {
-         console.log("done done");
+       });
+  });
+  $scope.$watchCollection('cards', function(newCards, oldCards){
+    if (newCards === oldCards){ return }
+      Card.updateMainCards(newCards, $scope.user._id).then(function(promise) {
        });
   });
 
